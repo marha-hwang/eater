@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.FragmentMypageBinding
 import com.example.myapplication.ui.home.HomeViewModel
@@ -34,6 +36,11 @@ class MypageFragment : Fragment() {
         mypageViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+        binding.button3.setOnClickListener{
+            val nav = activity?.findNavController(R.id.nav_host_fragment_activity_main)
+            nav?.navigate(R.id.restaurant_InfoFragment)
+        }
+
         return root
     }
 

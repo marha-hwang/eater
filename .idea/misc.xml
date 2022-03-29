@@ -8,13 +8,17 @@
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.376" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.376" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.376" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_restaurant_info.xml" value="0.15780141843971632" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.2564814814814815" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_home.xml" value="0.2564814814814815" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_mypage.xml" value="0.2793819655521783" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_notifications.xml" value="0.2564814814814815" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_setting.xml" value="0.2793819655521783" />
+        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_list.xml" value="0.5" />
+        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/layout/restaurant__info_fragment.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22" />
+        <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/menu/menu.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1695" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1695" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
