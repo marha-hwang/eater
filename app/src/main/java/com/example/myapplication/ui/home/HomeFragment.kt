@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
 
 
-        homeViewModel.itemsListData.observe(viewLifecycleOwner){
+        homeViewModel.RestaurantList.observe(viewLifecycleOwner){
             adapter.notifyDataSetChanged()
         }
 

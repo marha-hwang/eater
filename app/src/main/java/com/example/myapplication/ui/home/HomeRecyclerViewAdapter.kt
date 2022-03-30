@@ -21,10 +21,10 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(icon: String, firstName: String, lastName: String){
-                binding.textView.text = icon
-                binding.textView2.text = firstName
-                binding.textView3.text = lastName
+            fun bind(place_name: String, address_name: String, x: String){
+                binding.textView.text = place_name
+                binding.textView2.text = address_name
+                binding.textView3.text = x
                 binding.CardView.setOnClickListener {
 
                 }
@@ -45,8 +45,13 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(viewModel.items[position].icon,viewModel.items[position].firstName,viewModel.items[position].lastName)
+        holder.bind(viewModel.RestaurantData!!.documents!!.get(position)!!.place_name,
+            viewModel.RestaurantData!!.documents!!.get(position)!!.address_name,
+            viewModel.RestaurantData!!.documents!!.get(position)!!.x)
     }
 
-    override fun getItemCount() = viewModel.items.size
+    override fun getItemCount(): Int {
+        return if(viewModel.RestaurantData==null) 0
+        else viewModel.RestaurantData!!.documents!!.size
+    }
 }

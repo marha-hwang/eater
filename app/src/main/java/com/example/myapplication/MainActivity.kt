@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,
@@ -50,34 +49,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration) //이동시 상단액션바(툴바)변경
         navView.setupWithNavController(navController) //프래그먼트 이동수행
 
-        searchKeyword("갈매동","FD6")
 
     }
     override fun onSupportNavigateUp():Boolean{ //네비게이션 up버튼 동작
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp()
-    }
-
-    private fun searchKeyword(keyword: String, category: String){
-        val retrofit = Retrofit.Builder()
-            .baseUrl(KaKaoApi.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val api = retrofit.create(KaKaoApiService::class.java)
-        val call = api.getKaKaoAddress(KaKaoApi.API_KEY, keyword,category)
-
-        call.enqueue(object: Callback<RestaurantData> {
-            override fun onResponse(
-                call: Call<RestaurantData>,
-                response: Response<RestaurantData>
-            ){
-                Log.d("ApiTest", "Raw: ${response.raw()}")
-                Log.d("ApiTest", "Raw: ${response.body()}")
-            }
-            override fun onFailure(call: Call<RestaurantData>, t: Throwable) {
-                Log.e("Mainactivity", "통신실패: ${t.message}")
-            }
-        })
     }
     
 }

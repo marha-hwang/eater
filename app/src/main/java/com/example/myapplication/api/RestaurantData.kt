@@ -1,7 +1,7 @@
 package com.example.myapplication.api
 
 data class RestaurantData(
-    var documents: List<Place>
+    var documents: ArrayList<Place>
 )
 
 data class Place(
