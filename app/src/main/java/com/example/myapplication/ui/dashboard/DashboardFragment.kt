@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
+import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
+
 
 class DashboardFragment : Fragment() {
 
@@ -32,8 +36,21 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        //kakao maps Api 구간
+       // val mapView = MapView(activity)
+        //val mapViewContainer = binding.mapView
+        //mapViewContainer.addView(mapView)
+
+
+        val mapView = MapView(activity)
+        val mapViewContainer: ViewGroup = root.findViewById(R.id.map_view)
+        mapViewContainer.addView(mapView)
+
+        //
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
