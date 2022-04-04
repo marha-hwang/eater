@@ -1,24 +1,20 @@
 package com.example.myapplication.ui.home
 
+
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import com.example.myapplication.Restaurant_INFO
+import com.example.myapplication.api.Place
 import com.example.myapplication.databinding.ItemListBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
-import java.security.AccessController.getContext
 
 class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val context: Context) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+
+    var placeList = mutableListOf<Place>() //데이터 세팅을 위한 변수
+
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bind(place_name: String, address_name: String, x: String){
@@ -26,7 +22,8 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
                 binding.textView2.text = address_name
                 binding.textView3.text = x
                 binding.CardView.setOnClickListener {
-
+                    val nav = findNavController(it)
+                    nav?.navigate(R.id.restaurant_InfoFragment)
                 }
                /* binding.CardView.setOnClickListener{ //activity를 통한 화면전환시 사용
                     val nextIntent = Intent(context, Restaurant_INFO::class.java)
@@ -45,13 +42,17 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(viewModel.RestaurantData!!.documents!!.get(position)!!.place_name,
-            viewModel.RestaurantData!!.documents!!.get(position)!!.address_name,
-            viewModel.RestaurantData!!.documents!!.get(position)!!.x)
+        holder.bind(placeList[position].place_name,
+            placeList[position].address_name,
+           placeList[position].x,)
     }
 
     override fun getItemCount(): Int {
-        return if(viewModel.RestaurantData==null) 0
-        else viewModel.RestaurantData!!.documents!!.size
+        return if(placeList==null) 0
+        else placeList.size
+    }
+
+    fun setData(data : ArrayList<Place>){
+        placeList = data
     }
 }

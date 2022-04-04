@@ -11,3 +11,5 @@ data class Place(
     var x: String,                      // X 좌표값 혹은 longitude
     var y: String,                      // Y 좌표값 혹은 latitude
 )
+
+

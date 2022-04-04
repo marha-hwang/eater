@@ -17,34 +17,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 data class Item(val icon: String, val firstName: String, val lastName: String)
 
 class HomeViewModel : ViewModel() {
-   /* val itemsListData = MutableLiveData<ArrayList<Item>>()
-    val items = ArrayList<Item>()
 
-    init {
-        items.add(Item("person", "Yuh-jung", "Youn"))
-        items.add(Item("person", "Steven", "Yeun"))
-        items.add(Item("person", "Alan", "Kim"))
-        items.add(Item("person outline", "Ye-ri", "Han"))
-        items.add(Item("person outline", "Noel", "Cho"))
-        items.add(Item("person pin", "Lee Issac", "Chung"))
-        items.add(Item("person", "Yuh-jung", "Youn"))
-        items.add(Item("person", "Steven", "Yeun"))
-        items.add(Item("person", "Alan", "Kim"))
-        items.add(Item("person outline", "Ye-ri", "Han"))
-        items.add(Item("person outline", "Noel", "Cho"))
-        items.add(Item("person pin", "Lee Issac", "Chung"))
-        itemsListData.value = items
-    }*/
-
-    val RestaurantList = MutableLiveData<RestaurantData>()
-    var RestaurantData:RestaurantData? = null
+    val RestaurantList = MutableLiveData<ArrayList<Place>>()
+    val places = ArrayList<Place>()
 
     init{
         searchKeyword("갈매동", "FD6")
-        RestaurantList.value = RestaurantData
+        RestaurantList.value = places
+        Log.d("init abcd", RestaurantList.toString())
     }
 
-    private fun searchKeyword(keyword: String, category: String){
+
+    fun searchKeyword(keyword: String, category: String){
         val retrofit = Retrofit.Builder()
             .baseUrl(KaKaoApi.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -59,7 +43,17 @@ class HomeViewModel : ViewModel() {
             ){
                 Log.d("ApiTest", "Raw: ${response.raw()}")
                 Log.d("ApiTest", "Raw: ${response.body()}")
-                RestaurantData = response.body()
+                for(i: Int in 0 until response.body()!!.documents.size) {
+                    places.add(
+                        Place(
+                            response.body()?.documents!!.get(i)!!.place_name,
+                            response.body()?.documents!!.get(i)!!.address_name,
+                            response.body()?.documents!!.get(i)!!.road_address_name,
+                            response.body()?.documents!!.get(i)!!.x,
+                            response.body()?.documents!!.get(i)!!.y
+                        )
+                    )
+                }
             }
             override fun onFailure(call: Call<RestaurantData>, t: Throwable) {
                 Log.e("Mainactivity", "통신실패: ${t.message}")

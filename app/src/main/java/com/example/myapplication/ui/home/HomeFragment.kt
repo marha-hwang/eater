@@ -51,15 +51,9 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(activity,2) // 가로정렬
         //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
 
-
         homeViewModel.RestaurantList.observe(viewLifecycleOwner){
             adapter.notifyDataSetChanged()
-        }
-
-
-        binding.button.setOnClickListener{
-            val nav = activity?.findNavController(R.id.nav_host_fragment_activity_main)
-            nav?.navigate(R.id.restaurant_InfoFragment)
+            adapter.setData(it)
         }
 
         return root
@@ -67,4 +61,3 @@ class HomeFragment : Fragment() {
 
 
 }
-
