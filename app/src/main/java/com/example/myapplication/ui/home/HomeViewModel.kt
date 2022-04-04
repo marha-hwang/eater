@@ -23,7 +23,6 @@ class HomeViewModel : ViewModel() {
 
     init{
         searchKeyword("갈매동", "FD6")
-        RestaurantList.value = places
         Log.d("init abcd", RestaurantList.toString())
     }
 
@@ -54,6 +53,7 @@ class HomeViewModel : ViewModel() {
                         )
                     )
                 }
+                RestaurantList.value = places
             }
             override fun onFailure(call: Call<RestaurantData>, t: Throwable) {
                 Log.e("Mainactivity", "통신실패: ${t.message}")
