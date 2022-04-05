@@ -4,4 +4,6 @@ import androidx.lifecycle.ViewModel
 
 class RestaurantInfoViewModel : ViewModel() {
     // TODO: Implement the ViewModel
+
+
 }
