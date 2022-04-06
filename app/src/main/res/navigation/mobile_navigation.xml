@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_navigation_home_to_restaurant_InfoFragment4"
             app:destination="@id/restaurant_InfoFragment" />
+        <argument
+            android:name="restaurant_name"
+            app:argType="string" />
+        <argument
+            android:name="restaurant_address"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -43,6 +49,12 @@
         android:name="com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragment"
         android:label="restaurant__info_fragment"
         tools:layout="@layout/restaurant__info_fragment" >
+        <argument
+            android:name="restaurant_name"
+            app:argType="string" />
+        <argument
+            android:name="restaurant_address"
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -49,50 +49,6 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*
-        // 삭제필요
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-         */
-
-        //kakao maps Api 구간
-
-        //val mapView = MapView(activity)
-        //val mapViewContainer: ViewGroup = root.findViewById(R.id.map_view)
-        //mapViewContainer.addView(mapView)
-
-        /*
-        // 서울 남산 좌표 이동
-        mapView.setMapCenterPoint(
-            MapPoint.mapPointWithGeoCoord(
-                37.54892296550104,
-                126.99089033876304
-            ), true
-        );
-
-        // 줌 레벨 변경
-        mapView.setZoomLevel(4, true);
-
-         */
-
-        // 마커 찍기
-        /*val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304)
-        val marker = MapPOIItem()
-        marker.itemName = "Default Marker"
-        marker.tag = 0
-        marker.mapPoint = MARKER_POINT
-        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-
-        marker.selectedMarkerType =
-            MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-
-
-        mapView.addPOIItem(marker)
-
-         */
-
         // 장소 검색
         binding.rvList.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

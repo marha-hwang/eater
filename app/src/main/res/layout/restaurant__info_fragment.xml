@@ -63,10 +63,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/restaurant_name"
             android:layout_width="297dp"
             android:layout_height="47dp"
-            android:text="menu, information"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,10 +73,9 @@
             app:layout_constraintVertical_bias="0.295" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/restaurant_address"
             android:layout_width="297dp"
             android:layout_height="47dp"
-            android:text="menu, information"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

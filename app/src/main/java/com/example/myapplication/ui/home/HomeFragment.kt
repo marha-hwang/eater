@@ -25,6 +25,8 @@ import com.example.myapplication.Restaurant_INFO
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.ItemListBinding
 import com.example.myapplication.ui.mypage.MypageFragment
+import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragment
+import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragmentArgs
 import java.security.AccessController.getContext
 
 class HomeFragment : Fragment() {
@@ -54,6 +56,10 @@ class HomeFragment : Fragment() {
         homeViewModel.RestaurantList.observe(viewLifecycleOwner){
             adapter.notifyDataSetChanged()
             adapter.setData(it)
+        }
+
+        binding.homeSearchbutton.setOnClickListener {
+            homeViewModel.searchKeyword(binding.homeSearchfield.text.toString(),"FD6")
         }
 
         return root

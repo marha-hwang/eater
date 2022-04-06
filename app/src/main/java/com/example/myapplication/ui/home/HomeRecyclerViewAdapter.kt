@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.api.Place
 import com.example.myapplication.databinding.ItemListBinding
+import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragment
+import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragmentArgs
 
 class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val context: Context) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
@@ -23,7 +25,9 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
                 binding.textView3.text = x
                 binding.CardView.setOnClickListener {
                     val nav = findNavController(it)
-                    nav?.navigate(R.id.restaurant_InfoFragment)
+                    val action=HomeFragmentDirections.actionNavigationHomeToRestaurantInfoFragment4(
+                        binding.textView.text.toString(),binding.textView2.text.toString())
+                    nav?.navigate(action)
                 }
                /* binding.CardView.setOnClickListener{ //activity를 통한 화면전환시 사용
                     val nextIntent = Intent(context, Restaurant_INFO::class.java)

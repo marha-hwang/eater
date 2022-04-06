@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.home
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-data class Item(val icon: String, val firstName: String, val lastName: String)
 
 class HomeViewModel : ViewModel() {
 
@@ -39,22 +38,29 @@ class HomeViewModel : ViewModel() {
             override fun onResponse(
                 call: Call<RestaurantData>,
                 response: Response<RestaurantData>
-            ){
+            ) {
                 Log.d("ApiTest", "Raw: ${response.raw()}")
                 Log.d("ApiTest", "Raw: ${response.body()}")
-                for(i: Int in 0 until response.body()!!.documents.size) {
-                    places.add(
-                        Place(
-                            response.body()?.documents!!.get(i)!!.place_name,
-                            response.body()?.documents!!.get(i)!!.address_name,
-                            response.body()?.documents!!.get(i)!!.road_address_name,
-                            response.body()?.documents!!.get(i)!!.x,
-                            response.body()?.documents!!.get(i)!!.y
+                places.clear()
+                if (response.body()!=null) {
+                    for (i: Int in 0 until response.body()!!.documents.size) {
+                        places.add(
+                            Place(
+                                response.body()?.documents!!.get(i)!!.place_name,
+                                response.body()?.documents!!.get(i)!!.address_name,
+                                response.body()?.documents!!.get(i)!!.road_address_name,
+                                response.body()?.documents!!.get(i)!!.x,
+                                response.body()?.documents!!.get(i)!!.y
+                            )
                         )
-                    )
+                    }
+                }
+                else {
+                    Log.d("ApiTest", "Raw: 검색결과가 없습니다")
                 }
                 RestaurantList.value = places
             }
+
             override fun onFailure(call: Call<RestaurantData>, t: Throwable) {
                 Log.e("Mainactivity", "통신실패: ${t.message}")
             }
