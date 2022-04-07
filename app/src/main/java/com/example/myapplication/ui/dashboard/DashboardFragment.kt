@@ -20,7 +20,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 class DashboardFragment : Fragment() {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com/"
@@ -31,6 +30,7 @@ class DashboardFragment : Fragment() {
     private val listAdapter = ListAdapter(listItems)    // 리사이클러 뷰 어댑터
     private var pageNumber = 1      // 검색 페이지 번호
     private var keyword = ""        // 검색 키워드
+    private var zoomlevelcount = 1 // 줌 레벨 초기값 설정
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -125,6 +125,16 @@ class DashboardFragment : Fragment() {
             pageNumber++
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
+        }
+
+        // 확대 축소 버튼
+        binding.btnZoomButton.setOnClickListener{
+            zoomlevelcount++
+            binding.mapView.setZoomLevel(zoomlevelcount, true)
+        }
+        binding.btnZoomOutButton.setOnClickListener{
+            zoomlevelcount--
+            binding.mapView.setZoomLevel(zoomlevelcount, true)
         }
         return root
     }
