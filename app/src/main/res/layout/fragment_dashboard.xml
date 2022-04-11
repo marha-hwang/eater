@@ -7,6 +7,30 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
 
+    <Button
+        android:id="@+id/btnZoomButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="300dp"
+        android:text="+"
+        app:layout_constraintBottom_toTopOf="@+id/btnZoomOutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnZoomOutButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="100dp"
+        android:text="-"
+        app:icon="@android:drawable/presence_busy"
+        app:layout_constraintBottom_toBottomOf="@+id/map_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <net.daum.mf.map.api.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
@@ -100,5 +124,13 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnGpsButton"
+        android:layout_width="66dp"
+        android:layout_height="43dp"
+        android:text="GPS"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="331dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
