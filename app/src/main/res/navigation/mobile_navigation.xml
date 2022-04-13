@@ -13,12 +13,14 @@
         <action
             android:id="@+id/action_navigation_home_to_restaurant_InfoFragment4"
             app:destination="@id/restaurant_InfoFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_searchFragment"
+            app:destination="@id/searchFragment" />
         <argument
-            android:name="restaurant_name"
-            app:argType="string" />
-        <argument
-            android:name="restaurant_address"
-            app:argType="string" />
+            android:name="search_input"
+            app:argType="string">
+
+        </argument>
     </fragment>
 
     <fragment
@@ -55,6 +57,17 @@
         <argument
             android:name="restaurant_address"
             app:argType="string" />
+        <argument
+            android:name="restaurant_url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.myapplication.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
 </navigation>

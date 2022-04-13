@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             ), //최상위 레이아웃으로지정
         )
 
-        setupActionBarWithNavController(navController, appBarConfiguration) //이동시 상단액션바(툴바)변경
+        //setupActionBarWithNavController(navController, appBarConfiguration) //이동시 상단액션바(툴바)변경
         navView.setupWithNavController(navController) //프래그먼트 이동수행
     }
     override fun onSupportNavigateUp():Boolean{ //네비게이션 up버튼 동작

@@ -21,8 +21,8 @@ class HomeViewModel : ViewModel() {
     val places = ArrayList<Place>()
 
     init{
-        searchKeyword("갈매동", "FD6")
-        Log.d("init abcd", RestaurantList.toString())
+        //searchKeyword("갈매동", "FD6")
+        //Log.d("init abcd", RestaurantList.toString())
     }
 
 
@@ -49,6 +49,7 @@ class HomeViewModel : ViewModel() {
                                 response.body()?.documents!!.get(i)!!.place_name,
                                 response.body()?.documents!!.get(i)!!.address_name,
                                 response.body()?.documents!!.get(i)!!.road_address_name,
+                                response.body()?.documents!!.get(i)!!.place_url,
                                 response.body()?.documents!!.get(i)!!.x,
                                 response.body()?.documents!!.get(i)!!.y
                             )

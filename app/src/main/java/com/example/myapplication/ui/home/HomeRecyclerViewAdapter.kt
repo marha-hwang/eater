@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
 import com.example.myapplication.api.Place
 import com.example.myapplication.databinding.ItemListBinding
-import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragment
-import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragmentArgs
 
 class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val context: Context) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
@@ -19,14 +16,14 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
 
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(place_name: String, address_name: String, x: String){
+            fun bind(place_name: String, address_name: String, place_url: String){
                 binding.textView.text = place_name
                 binding.textView2.text = address_name
-                binding.textView3.text = x
+                binding.textView3.text = place_url
                 binding.CardView.setOnClickListener {
                     val nav = findNavController(it)
                     val action=HomeFragmentDirections.actionNavigationHomeToRestaurantInfoFragment4(
-                        binding.textView.text.toString(),binding.textView2.text.toString())
+                        place_name, address_name, place_url)
                     nav?.navigate(action)
                 }
                /* binding.CardView.setOnClickListener{ //activity를 통한 화면전환시 사용
@@ -48,7 +45,7 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(placeList[position].place_name,
             placeList[position].address_name,
-           placeList[position].x,)
+           placeList[position].place_url,)
     }
 
     override fun getItemCount(): Int {
