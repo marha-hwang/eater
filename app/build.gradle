@@ -70,4 +70,5 @@ dependencies {
     //gps기능라이브러리
     implementation 'com.google.android.gms:play-services-location:19.0.1'
 
+
 }
