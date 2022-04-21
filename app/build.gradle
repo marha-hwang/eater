@@ -67,5 +67,7 @@ dependencies {
     //url로 이미지 가져오기
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    //gps기능라이브러리
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 
 }

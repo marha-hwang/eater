@@ -19,4 +19,12 @@ interface KaKaoApiService{
         @Query("query") address:String,
         @Query("category_group_code") category:String
     ): Call<RestaurantData>
+
+    @GET("v2/local/geo/coord2address.json")
+    fun getAddressFromCoordinate(
+        @Header("Authorization") key:String,
+        @Query("x") x:String,
+        @Query("y") y:String,
+        @Query("input_coord") coord:String
+    ): Call<AddressData>
 }

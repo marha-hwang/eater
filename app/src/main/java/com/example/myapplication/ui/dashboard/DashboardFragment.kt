@@ -1,19 +1,25 @@
 package com.example.myapplication.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
+import com.google.android.gms.maps.GoogleMap
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), MapView.MapViewEventListener {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com/"
         const val API_KEY = "KakaoAK ad9588c849020194182ad63bfb3285b3"  // REST API 키
@@ -82,8 +88,14 @@ class DashboardFragment : Fragment() {
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
         }
+
+        //지도클릭시 키보드 사라지기
+       binding.mapView.setMapViewEventListener(this)
+
+
         return root
     }
+
 
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
@@ -150,5 +162,43 @@ class DashboardFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+//지도 이벤트 처리 함수 override
+    override fun onMapViewInitialized(p0: MapView?) {
+
+    }
+
+    override fun onMapViewCenterPointMoved(p0: MapView?, p1: MapPoint?) {
+
+    }
+
+    override fun onMapViewZoomLevelChanged(p0: MapView?, p1: Int) {
+
+    }
+
+    override fun onMapViewSingleTapped(p0: MapView?, p1: MapPoint?) {
+        (activity as MainActivity).dismissKeyboard()
+    }
+
+    override fun onMapViewDoubleTapped(p0: MapView?, p1: MapPoint?) {
+
+    }
+
+    override fun onMapViewLongPressed(p0: MapView?, p1: MapPoint?) {
+
+    }
+
+    override fun onMapViewDragStarted(p0: MapView?, p1: MapPoint?) {
+
+    }
+
+    override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {
+
+    }
+
+    override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
+
     }
 }
