@@ -1,14 +1,18 @@
 package com.example.myapplication
 
 
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,11 +41,24 @@ class MainActivity : AppCompatActivity() {
 
         //setupActionBarWithNavController(navController, appBarConfiguration) //이동시 상단액션바(툴바)변경
         navView.setupWithNavController(navController) //프래그먼트 이동수행
+
+
+
+
     }
-    override fun onSupportNavigateUp():Boolean{ //네비게이션 up버튼 동작
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        return navController.navigateUp()
+
+
+
+
+    //var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        return true
     }
+
+
 
 }
 

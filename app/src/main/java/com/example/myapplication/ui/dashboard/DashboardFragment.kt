@@ -1,16 +1,17 @@
 package com.example.myapplication.ui.dashboard
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
@@ -19,6 +20,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+
+////
+
+
+
 
 
 class DashboardFragment : Fragment() {
@@ -38,10 +45,24 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
+
+
+
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
+
+
+
+
+
+
+
     ): View {
         val dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
@@ -53,12 +74,26 @@ class DashboardFragment : Fragment() {
         binding.rvList.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = listAdapter
+
+
+
+
+
+///
+
+
+
+//
+
+
+
         // 리스트 아이템 클릭 시 해당 위치로 이동
         listAdapter.setItemClickListener(object : com.example.myapplication.ui.dashboard.ListAdapter.OnItemClickListener  {
             override fun onClick(v: View, position: Int) {
                 val mapPoint =
                     MapPoint.mapPointWithGeoCoord(listItems[position].y, listItems[position].x)
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
+
             }
         })
 
@@ -82,8 +117,28 @@ class DashboardFragment : Fragment() {
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
         }
+
+
+
+
+        binding.mapView.setOnClickListener( ){
+
+            //(activity as MainActivity).onTouchEvent(MotionEvent)
+        }
+
+
+
+
+
+
+
+
         return root
     }
+
+
+
+
 
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
@@ -104,8 +159,16 @@ class DashboardFragment : Fragment() {
             override fun onFailure(call: Call<ResultSearchKeyword>, t: Throwable) {
                 // 통신 실패
                 Log.w("LocalSearch", "통신 실패: ${t.message}")
+
             }
+
         })
+
+
+
+
+
+
     }
 
     // 검색 결과 처리 함수
@@ -136,14 +199,19 @@ class DashboardFragment : Fragment() {
             }
             listAdapter.notifyDataSetChanged()
 
+
+
+
             binding.btnNextPage.isEnabled = !searchResult.meta.is_end // 페이지가 더 있을 경우 다음 버튼 활성화
             binding.btnPrevPage.isEnabled = pageNumber != 1             // 1페이지가 아닐 경우 이전 버튼 활성화
 
         } else {
             // 검색 결과 없음
             Toast.makeText(activity, "검색 결과가 없습니다", Toast.LENGTH_SHORT).show()
+
         }
         //
+
     }
 
 
@@ -151,4 +219,20 @@ class DashboardFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
