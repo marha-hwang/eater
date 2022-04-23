@@ -58,13 +58,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'src/libs')
     implementation files('src/libs/libDaumMapAndroid.jar')
 
-    //kakao login
-    implementation "com.kakao.sdk:v2-user:2.0.1"
-
     //Retrofit 의존성 추가
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-
 
 }

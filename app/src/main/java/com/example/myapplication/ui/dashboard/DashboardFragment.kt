@@ -1,8 +1,5 @@
 package com.example.myapplication.ui.dashboard
 
-import android.content.Context
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,22 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.MainActivity
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
-import net.daum.mf.map.api.MapView.MapViewEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class DashboardFragment : Fragment() {
     companion object {
@@ -37,7 +31,6 @@ class DashboardFragment : Fragment() {
     private val listAdapter = ListAdapter(listItems)    // 리사이클러 뷰 어댑터
     private var pageNumber = 1      // 검색 페이지 번호
     private var keyword = ""        // 검색 키워드
-    private var zoomlevelcount = 1 // 줌 레벨 초기값 설정
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -68,7 +61,7 @@ class DashboardFragment : Fragment() {
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
             }
         })
-        
+
         // 검색 버튼
         binding.btnSearch.setOnClickListener {
             keyword = binding.etSearchField.text.toString()
@@ -88,15 +81,6 @@ class DashboardFragment : Fragment() {
             pageNumber++
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
-        }
-        // 확대 축소 버튼
-        binding.btnZoomButton.setOnClickListener{
-            zoomlevelcount--
-            binding.mapView.setZoomLevel(zoomlevelcount, true)
-        }
-        binding.btnZoomOutButton.setOnClickListener{
-            zoomlevelcount++
-            binding.mapView.setZoomLevel(zoomlevelcount, true)
         }
         return root
     }
@@ -132,23 +116,19 @@ class DashboardFragment : Fragment() {
             binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
             for (document in searchResult!!.documents) {
                 // 결과를 리사이클러 뷰에 추가
-                val item = ListLayout(
-                    document.place_name,
+                val item = ListLayout(document.place_name,
                     document.road_address_name,
                     document.address_name,
                     document.x.toDouble(),
-                    document.y.toDouble()
-                )
+                    document.y.toDouble())
                 listItems.add(item)
 
                 // 지도에 마커 추가
                 val point = MapPOIItem()
                 point.apply {
                     itemName = document.place_name
-                    mapPoint = MapPoint.mapPointWithGeoCoord(
-                        document.y.toDouble(),
-                        document.x.toDouble()
-                    )
+                    mapPoint = MapPoint.mapPointWithGeoCoord(document.y.toDouble(),
+                        document.x.toDouble())
                     markerType = MapPOIItem.MarkerType.BluePin
                     selectedMarkerType = MapPOIItem.MarkerType.RedPin
                 }
@@ -165,6 +145,7 @@ class DashboardFragment : Fragment() {
         }
         //
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
