@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -22,21 +23,30 @@ class LoginActivity : AppCompatActivity(){
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 loginErrorCode(error)
-            } else if (token != null) {
+                Log.e(TAG, "로그인 실패",error)
+            }
+            else if (token != null) {
+                Log.i(TAG, "로그인 성공 ${token.accessToken}")
+
                 UserApiClient.instance.me { user, error ->
                     if (error != null) {
                         Log.e(error.toString(), "사용자 정보 요청 실패")
-                    } else {
+                    }
+                    else {
                         /* 로그인 성공시 작업 부분 */
 
                         // 카카오 토큰
                         val userToken = token.accessToken
+                        Log.e(TAG,"로그인 성공 ${userToken}")
                         // 카카오 id
                         val userId = user?.id.toString()
+                        Log.e(TAG,"로그인 ID ${userId}")
                         // 카카오 이메일
                         val userEmail = user?.kakaoAccount?.email.toString()
+                        Log.e(TAG,"로그인 이메일 ${userEmail}")
                         // 카카오 닉네임
                         val userNickname = user?.kakaoAccount?.profile?.nickname.toString()
+                        Log.e(TAG,"로그인 닉네임 ${userNickname}")
 
                     }
 

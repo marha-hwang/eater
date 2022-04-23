@@ -22,6 +22,7 @@ import com.example.myapplication.api.*
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragmentArgs
 import com.google.android.gms.location.*
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
