@@ -12,13 +12,15 @@ import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
+import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import net.daum.mf.map.api.MapView.MapViewEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,7 +68,7 @@ class DashboardFragment : Fragment() {
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
             }
         })
-
+        
         // 검색 버튼
         binding.btnSearch.setOnClickListener {
             keyword = binding.etSearchField.text.toString()
@@ -87,7 +89,6 @@ class DashboardFragment : Fragment() {
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
         }
-
         // 확대 축소 버튼
         binding.btnZoomButton.setOnClickListener{
             zoomlevelcount--
