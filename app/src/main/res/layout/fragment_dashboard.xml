@@ -25,9 +25,11 @@
         android:layout_marginStart="300dp"
         android:layout_marginBottom="100dp"
         android:text="-"
+        app:icon="@android:drawable/presence_busy"
         app:layout_constraintBottom_toBottomOf="@+id/map_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <net.daum.mf.map.api.MapView
         android:id="@+id/map_view"
