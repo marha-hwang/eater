@@ -33,7 +33,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class DashboardFragment : Fragment() {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com/"
@@ -117,6 +116,7 @@ class DashboardFragment : Fragment() {
         //시스템으로 부터 위치 정보를 콜백으로 받은 후 UI작업과 api작업을 수행하는 함수
         val mLocationCallBack = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
+                binding.mapView.removeAllPOIItems()
                 mLastLocation = locationResult.lastLocation
                 val date: Date = Calendar.getInstance().time
                 val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
@@ -125,7 +125,16 @@ class DashboardFragment : Fragment() {
                     simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
                 )
 
-
+                val point = MapPOIItem()
+                point.apply {
+                    itemName = "현재 위치"
+                    mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.longitude,
+                        mLastLocation.latitude)
+                    markerType = MapPOIItem.MarkerType.BluePin
+                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                }
+                binding.mapView.addPOIItem(point)
+                binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.longitude, mLastLocation.latitude), 9,true)
             }
         }
 
