@@ -104,21 +104,26 @@ class HomeFragment : Fragment() {
         //마지막 위치정보 얻어오기, 마지막 위치 정보가 없으면 defalt 값으로 서울 시청으로 설정
         if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
             mFusedLocationProviderClient!!.lastLocation.addOnSuccessListener { location: Location? ->
-                if ((location!!.longitude >= 0) && (location!!.latitude >= 0)) {
-                    homeViewModel.searchAddress(
-                        location!!.longitude.toString(),
-                        location.latitude.toString(),
-                        "WGS84"
-                    )
-                    Log.d("location1", "location" + location!!.longitude.toString())
+                Log.d("location0", "location" + location)
+                if ((location == null) || ((location!!.longitude >= 0) && (location!!.latitude >= 0))) {
+                    if (location != null) {
+                        homeViewModel.searchAddress(
+                            location.longitude.toString(),
+                            location.latitude.toString(),
+                            "WGS84"
+                        )
+                        Log.d("location1", "location" + location!!.longitude.toString())
+                    }
+                    homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
+                    Log.d("location2", "location: " + location)
                 } else {
                     homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
-                    Log.d("location2", "location")
+                    Log.d("location3", "location")
                 }
             }
         } else {
             homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
-            Log.d("location2", "location")
+            Log.d("location4", "location")
         }
 
         var search_keyword = ""
