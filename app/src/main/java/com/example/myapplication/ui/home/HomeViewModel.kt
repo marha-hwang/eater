@@ -5,10 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.api.KaKaoApi
-import com.example.myapplication.api.KaKaoApiService
-import com.example.myapplication.api.Place
-import com.example.myapplication.api.RestaurantData
+import com.example.myapplication.api.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,9 +17,12 @@ class HomeViewModel : ViewModel() {
     val RestaurantList = MutableLiveData<ArrayList<Place>>()
     val places = ArrayList<Place>()
 
+    val address = MutableLiveData<String>()
+    val region_2depth_name = MutableLiveData<String>()
+    val region_3depth_name = MutableLiveData<String>()
+
     init{
-        //searchKeyword("갈매동", "FD6")
-        //Log.d("init abcd", RestaurantList.toString())
+
     }
 
 
@@ -63,6 +63,38 @@ class HomeViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<RestaurantData>, t: Throwable) {
+                Log.e("Mainactivity", "통신실패: ${t.message}")
+            }
+        })
+    }
+
+    fun searchAddress(x: String, y: String, coord: String){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(KaKaoApi.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api = retrofit.create(KaKaoApiService::class.java)
+        val call = api.getAddressFromCoordinate(KaKaoApi.API_KEY, x, y, coord)
+
+        call.enqueue(object : Callback<AddressData> {
+            override fun onResponse(
+                call: Call<AddressData>,
+                response: Response<AddressData>
+            ) {
+                Log.d("ApiTest", "Raw: ${response.raw()}")
+                Log.d("ApiTest", "Raw: ${response.body()}")
+
+                if (response.body()!!.documents.size != 0) {
+                    address.value = response.body()!!.documents.get(0).address.address_name
+                    region_2depth_name.value = response.body()!!.documents.get(0).address.region_2depth_name
+                    region_3depth_name.value = response.body()!!.documents.get(0).address.region_3depth_name
+
+                } else {
+                    Log.d("ApiTest", "Raw: 검색결과가 없습니다")
+                }
+            }
+
+            override fun onFailure(call: Call<AddressData>, t: Throwable) {
                 Log.e("Mainactivity", "통신실패: ${t.message}")
             }
         })
