@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity(){
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 loginErrorCode(error)
@@ -48,22 +50,20 @@ class LoginActivity : AppCompatActivity(){
                         val userNickname = user?.kakaoAccount?.profile?.nickname.toString()
                         Log.e(TAG,"로그인 닉네임 ${userNickname}")
 
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     }
 
                 }
             }
         }
 
-        // 카카오 로그인 버튼
-        binding.btLoginKakao.setOnClickListener {
-            // 카카오 앱이 있는지 판별
-            if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
-                // 있는 경우 앱을 사용하여 로그인
-                LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
-            } else {
-                // 없을 경우 웹 페이지를 띄움
-                LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
-            }
+        if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
+            // 있는 경우 앱을 사용하여 로그인
+            LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
+        } else {
+            // 없을 경우 웹 페이지를 띄움
+            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
 
