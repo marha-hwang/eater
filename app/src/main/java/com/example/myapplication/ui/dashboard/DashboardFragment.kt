@@ -165,7 +165,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
     }
 
 
-//지도 이벤트 처리 함수 override
+//지도 이벤트 처리 함수 override구현
     override fun onMapViewInitialized(p0: MapView?) {
 
     }
