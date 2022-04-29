@@ -1,22 +1,26 @@
 package com.example.myapplication.ui.dashboard
 
-import android.content.Context
+import android.Manifest
+import android.content.ContentValues
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.ListAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.MainActivity
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDashboardBinding
-import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.location.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -25,6 +29,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DashboardFragment : Fragment(), MapView.MapViewEventListener {
@@ -32,6 +38,14 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         const val BASE_URL = "https://dapi.kakao.com/"
         const val API_KEY = "KakaoAK ad9588c849020194182ad63bfb3285b3"  // REST API 키
     }
+
+    // GPS 마커 변수
+    //현재위치를 가져오기 위한 변수
+    private  var mFusedLocationProviderClient: FusedLocationProviderClient? = null
+    //위치 값을 가지고 있는 객체
+    lateinit var mLastLocation: Location
+    //위치정보 요청의 매개변수를 저장하는 객체
+    internal lateinit var mLocationRequest: LocationRequest
 
     private val listItems = arrayListOf<ListLayout>()   // 리사이클러 뷰 아이템
     private val listAdapter = ListAdapter(listItems)    // 리사이클러 뷰 어댑터
@@ -87,6 +101,63 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             pageNumber++
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
+        }
+
+        //mFusedLocationProviderClient 변수 초기화
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        //mLocationRequest 변수 초기화
+        mLocationRequest = LocationRequest.create().apply{
+            //interval = 2000 // 업데이트 간격 단위(밀리초)
+            fastestInterval = 1000 // 가장 빠른 업데이트 간격 단위(밀리초)
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY // 정확성
+            maxWaitTime= 2000 // 위치 갱신 요청 최대 대기 시간 (밀리초)
+        }
+
+        //시스템으로 부터 위치 정보를 콜백으로 받은 후 UI작업과 api작업을 수행하는 함수
+        val mLocationCallBack = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                binding.mapView.removeAllPOIItems()
+                mLastLocation = locationResult.lastLocation
+                val date: Date = Calendar.getInstance().time
+                val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
+                Log.d(
+                    ContentValues.TAG,
+                    simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
+                )
+
+                val point = MapPOIItem()
+                point.apply {
+                    itemName = "현재 위치"
+                    mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.longitude,
+                        mLastLocation.latitude)
+                    markerType = MapPOIItem.MarkerType.BluePin
+                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                }
+                binding.mapView.addPOIItem(point)
+                binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.longitude, mLastLocation.latitude), 9,true)
+            }
+        }
+
+        //위치 업데이트를 하는 함수
+        fun startLocationUpdates() {
+
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+            if (ActivityCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                Log.d(ContentValues.TAG, "startLocationUpdates() 두 위치 권한중 하나라도 없는 경우 ")
+            }
+            mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallBack,
+                Looper.myLooper()!!
+            )
+        }
+
+        //위치정보를 가져오는 함수를 호출
+        binding.btnStart.setOnClickListener {
+            if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
+                startLocationUpdates()
+            }
         }
 
         //지도클릭시 키보드 사라지기

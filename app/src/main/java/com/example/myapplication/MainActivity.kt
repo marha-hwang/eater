@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 
+import android.content.Intent
+import android.widget.Toast
 import android.Manifest
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -21,7 +23,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.ui.home.HomeFragment
-import com.google.android.gms.location.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -103,4 +104,4 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-
+// Dongjun test4 2022-04-11
