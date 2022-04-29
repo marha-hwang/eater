@@ -18,9 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import com.google.android.gms.location.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -116,25 +113,29 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         //시스템으로 부터 위치 정보를 콜백으로 받은 후 UI작업과 api작업을 수행하는 함수
         val mLocationCallBack = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                binding.mapView.removeAllPOIItems()
-                mLastLocation = locationResult.lastLocation
-                val date: Date = Calendar.getInstance().time
-                val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
-                Log.d(
-                    ContentValues.TAG,
-                    simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
-                )
+                try { // 다른화면 전환시 NullPointerException이 계속 발생하여 try catch 문을 넣어줌
+                    binding.mapView.removeAllPOIItems()
+                    mLastLocation = locationResult.lastLocation
+                    val date: Date = Calendar.getInstance().time
+                    val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
+                    Log.d(
+                        ContentValues.TAG,
+                        simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
+                    )
 
-                val point = MapPOIItem()
-                point.apply {
-                    itemName = "현재 위치"
-                    mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.longitude,
-                        mLastLocation.latitude)
-                    markerType = MapPOIItem.MarkerType.BluePin
-                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                    val point = MapPOIItem()
+                    point.apply {
+                        itemName = "현재 위치"
+                        mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.latitude,
+                            mLastLocation.longitude)
+                        markerType = MapPOIItem.MarkerType.BluePin
+                        selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                    }
+                    binding.mapView.addPOIItem(point)
+                    binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 2,true)
+                }catch(e: java.lang.NullPointerException){
+                    Log.d("remove catch", "try catch Remove Marker")
                 }
-                binding.mapView.addPOIItem(point)
-                binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.longitude, mLastLocation.latitude), 9,true)
             }
         }
 
