@@ -12,9 +12,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.Glide
-import com.example.myapplication.R
-
 import com.example.myapplication.databinding.RestaurantInfoFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
