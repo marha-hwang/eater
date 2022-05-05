@@ -60,6 +60,12 @@
         <argument
             android:name="restaurant_url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_restaurant_InfoFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
+        <action
+            android:id="@+id/action_restaurant_InfoFragment_to_reviewsOfRestaurantFragment"
+            app:destination="@id/reviewsOfRestaurantFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -68,6 +74,28 @@
         <action
             android:id="@+id/action_searchFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.myapplication.ui.WriteReview.ReviewFragment"
+        android:label="fragment_review"
+        tools:layout="@layout/fragment_review" >
+        <argument
+            android:name="restaurant_name"
+            app:argType="string" />
+        <argument android:name="restaurant_address"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewsOfRestaurantFragment"
+        android:name="com.example.myapplication.ui.reviewsOfRestaurant.reviewsOfRestaurantFragment"
+        android:label="reviews_of_restaurant_fragment"
+        tools:layout="@layout/reviews_of_restaurant_fragment" >
+        <argument
+            android:name="restaurant_name"
+            app:argType="string" />
+        <argument android:name="restaurant_address"
+            app:argType="string" />
     </fragment>
 
 </navigation>

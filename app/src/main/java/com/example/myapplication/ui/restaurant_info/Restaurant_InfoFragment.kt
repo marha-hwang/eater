@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.RestaurantInfoFragmentBinding
+import com.example.myapplication.ui.home.HomeFragmentDirections
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,6 +50,21 @@ class Restaurant_InfoFragment : Fragment() {
         val navController = findNavController()
         binding.toolbar.setupWithNavController(navController)
 
+        binding.button6.setOnClickListener {
+            val nav = Navigation.findNavController(it)
+            val action= Restaurant_InfoFragmentDirections.actionRestaurantInfoFragmentToReviewFragment(
+                args.restaurantName,args.restaurantAddress
+            )
+            nav?.navigate(action)
+        }
+
+        binding.MoreReviews.setOnClickListener {
+            val nav = Navigation.findNavController(it)
+            val action= Restaurant_InfoFragmentDirections.actionRestaurantInfoFragmentToReviewsOfRestaurantFragment(
+                args.restaurantName,args.restaurantAddress
+            )
+            nav?.navigate(action)
+        }
 
         thread(start = true) {
             var url = args.restaurantUrl.split("/")
