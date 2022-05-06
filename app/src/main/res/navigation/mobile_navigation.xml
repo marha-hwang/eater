@@ -21,6 +21,9 @@
             app:argType="string">
 
         </argument>
+        <action
+            android:id="@+id/action_navigation_home_to_recommandFragment"
+            app:destination="@id/recommandFragment" />
     </fragment>
 
     <fragment
@@ -97,5 +100,10 @@
         <argument android:name="restaurant_address"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/recommandFragment"
+        android:name="com.example.myapplication.ui.recommandMenu.RecommandFragment"
+        android:label="fragment_recommand"
+        tools:layout="@layout/fragment_recommand" />
 
 </navigation>

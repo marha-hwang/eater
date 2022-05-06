@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.restaurant_info
 
+import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -15,6 +17,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.RestaurantInfoFragmentBinding
 import com.example.myapplication.ui.home.HomeFragmentDirections
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,11 +54,19 @@ class Restaurant_InfoFragment : Fragment() {
         binding.toolbar.setupWithNavController(navController)
 
         binding.button6.setOnClickListener {
-            val nav = Navigation.findNavController(it)
-            val action= Restaurant_InfoFragmentDirections.actionRestaurantInfoFragmentToReviewFragment(
-                args.restaurantName,args.restaurantAddress
-            )
-            nav?.navigate(action)
+            UserApiClient.instance.me { user, error ->
+                if (error != null) {
+                    Log.e(error.toString(), "사용자 정보 요청 실패")
+                    Toast.makeText(requireContext(), "로그인을 해주세요", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val nav = Navigation.findNavController(it)
+                    val action= Restaurant_InfoFragmentDirections.actionRestaurantInfoFragmentToReviewFragment(
+                        args.restaurantName,args.restaurantAddress
+                    )
+                    nav?.navigate(action)
+                }
+            }
         }
 
         binding.MoreReviews.setOnClickListener {

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="점심 메뉴를 추천해줘!"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+        android:id="@+id/group_food_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="10dp"
+
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/group_people_type"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_animateTexts_enterDuration="500"
+        app:rrbg_backgroundColor="@color/white"
+
+        app:rrbg_checkedPosition="0"
+        app:rrbg_dividerColor="#9E9E9E"
+        app:rrbg_dividerPadding="10dp"
+        app:rrbg_dividerRadius="0dp"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_enableDeselection="false"
+        app:rrbg_radius="0dp"
+        app:rrbg_selectorAboveOfBottomLine="true"
+        app:rrbg_selectorColor="#BDBDBD"
+        app:rrbg_selectorFullSize="true"
+        app:rrbg_selectorSize="4dp"
+        tools:layout_editor_absoluteX="10dp">
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="48dp"
+            app:rrb_drawableWidth="48dp"
+            app:rrb_text="전체"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="36dp"
+            app:rrb_drawableWidth="36dp"
+            app:rrb_text="한식"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="24dp"
+            app:rrb_drawableWidth="24dp"
+            app:rrb_text="중식"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="24dp"
+            app:rrb_drawableWidth="24dp"
+            app:rrb_text="일식"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="24dp"
+            app:rrb_drawableWidth="24dp"
+            app:rrb_text="양식"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+        android:id="@+id/group_people_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="10dp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_random"
+        app:layout_constraintTop_toBottomOf="@+id/group_food_type"
+        app:rrbg_animateTexts_enter="overshoot"
+        app:rrbg_animateTexts_enterDuration="500"
+        app:rrbg_backgroundColor="@color/white"
+        app:rrbg_checkedPosition="0"
+        app:rrbg_dividerColor="#9E9E9E"
+        app:rrbg_dividerPadding="10dp"
+        app:rrbg_dividerRadius="0dp"
+        app:rrbg_dividerSize="1dp"
+        app:rrbg_enableDeselection="false"
+        app:rrbg_radius="0dp"
+        app:rrbg_selectorAboveOfBottomLine="true"
+        app:rrbg_selectorColor="#BDBDBD"
+        app:rrbg_selectorFullSize="true"
+        app:rrbg_selectorSize="4dp">
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="48dp"
+            app:rrb_drawableWidth="48dp"
+            app:rrb_text="전체"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="36dp"
+            app:rrb_drawableWidth="36dp"
+            app:rrb_text="혼밥"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="24dp"
+            app:rrb_drawableWidth="24dp"
+            app:rrb_text="연인"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+        <co.ceryle.radiorealbutton.RadioRealButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rrb_drawableHeight="24dp"
+            app:rrb_drawableWidth="24dp"
+            app:rrb_text="가족"
+            app:rrb_textStyle="normal"
+            app:rrb_textTypeface="serif" />
+
+
+    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+
+    <Button
+        android:id="@+id/btn_random"
+        android:layout_width="107dp"
+        android:layout_height="67dp"
+        android:text="추천!"
+        app:layout_constraintBottom_toTopOf="@+id/progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_people_type" />
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="79dp"
+        android:layout_height="79dp"
+        android:layout_marginVertical="50dp"
+        android:layout_marginBottom="96dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:layout_marginBottom="72dp"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_random"
+        app:layout_constraintVertical_bias="0.764" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

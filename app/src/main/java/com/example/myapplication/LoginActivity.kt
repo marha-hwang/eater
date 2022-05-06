@@ -6,12 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.api.ReviewsData
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
+import kotlin.math.log
 
 class LoginActivity : AppCompatActivity(){
 
@@ -27,6 +35,7 @@ class LoginActivity : AppCompatActivity(){
                 loginErrorCode(error)
                 Log.e(TAG, "로그인 실패",error)
             }
+
             else if (token != null) {
                 Log.i(TAG, "로그인 성공 ${token.accessToken}")
 
@@ -50,8 +59,33 @@ class LoginActivity : AppCompatActivity(){
                         val userNickname = user?.kakaoAccount?.profile?.nickname.toString()
                         Log.e(TAG,"로그인 닉네임 ${userNickname}")
 
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        val db: FirebaseFirestore = Firebase.firestore
+                        val itemsCollectionRef = db.collection("Users")
+
+                        val itemMap = hashMapOf(
+                            "UserId" to userId,
+                        )
+
+                        itemsCollectionRef.whereEqualTo("UserId", userId).get().addOnSuccessListener {
+                            if(it.isEmpty) {
+                                itemsCollectionRef.add(itemMap) //새로운 document생성후 필드 추가
+                                    .addOnSuccessListener {
+                                        Log.e(TAG, "아이디 없음")
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        startActivity(intent)
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e(TAG, "사용자 아이디 등록 실패")
+                                    }
+                            } else{
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }.addOnFailureListener {
+                            Log.e(TAG, "FireBase 접근 에러")
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
 
                 }

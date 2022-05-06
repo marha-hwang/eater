@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.WriteReview
 
+import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,11 +18,13 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.user.UserApiClient
 
 
 class ReviewFragment : Fragment() {
     private var _binding: FragmentReviewBinding? = null
     private val binding get() = _binding!!
+    private var userid: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,16 @@ class ReviewFragment : Fragment() {
 
         val navController = findNavController()
 
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e(error.toString(), "사용자 정보 요청 실패")
+            }
+            else {
+                // 카카오 id
+                userid = user?.id.toString()
+            }
+        }
+
         binding.confirmButton.setOnClickListener {
             val rating= binding.ratingBar.rating.toDouble()
             val title = binding.reviewTitle.text.toString()
@@ -55,7 +68,7 @@ class ReviewFragment : Fragment() {
                 "rating" to rating,
                 "content" to content,
                 "date" to FieldValue.serverTimestamp(),
-                "writer" to "",
+                "writer" to userid,
             )
             itemsCollectionRef.add(itemMap) //새로운 document생성후 필드 추가
                 .addOnSuccessListener { navController.navigateUp() }
