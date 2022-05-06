@@ -75,16 +75,15 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="410dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="96dp"
+            android:layout_width="397dp"
+            android:layout_height="193dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.508" />
+            app:layout_constraintVertical_bias="0.807" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -101,22 +100,27 @@
         <Button
             android:id="@+id/button5"
             android:layout_width="82dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
             android:text="좋아요"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintHorizontal_bias="0.676"
             app:layout_constraintStart_toEndOf="@+id/restaurant_name"
-            app:layout_constraintTop_toBottomOf="@+id/button6" />
+            app:layout_constraintTop_toBottomOf="@+id/button6"
+            app:layout_constraintVertical_bias="0.166" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="80dp"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:text="리뷰 쓰기"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurant_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintHorizontal_bias="0.638"
             app:layout_constraintStart_toEndOf="@+id/restaurant_name"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView7"
@@ -132,8 +136,8 @@
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="85dp"
-            android:layout_height="28dp"
+            android:layout_width="56dp"
+            android:layout_height="25dp"
             android:text="리뷰"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/textView6"
@@ -141,7 +145,20 @@
             app:layout_constraintHorizontal_bias="0.009"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.863" />
+            app:layout_constraintVertical_bias="0.542" />
+
+        <Button
+            android:id="@+id/MoreReviews"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:text="More"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.581" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

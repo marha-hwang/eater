@@ -2,6 +2,7 @@ package com.example.myapplication.ui.home
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.example.myapplication.api.*
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragmentArgs
 import com.google.android.gms.location.*
+import com.kakao.sdk.user.UserApiClient
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -84,6 +86,16 @@ class HomeFragment : Fragment() {
 
                 homeViewModel.searchAddress(mLastLocation.longitude.toString(),
                     mLastLocation.latitude.toString(), "WGS84")
+            }
+        }
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e(error.toString(), "사용자 정보 요청 실패")
+            }
+            else {
+                // 카카오 id
+                val userId = user?.id.toString()
+                Log.e(ContentValues.TAG,"로그인 ID ${userId}")
             }
         }
         //위치 업데이트를 하는 함수
@@ -185,6 +197,10 @@ class HomeFragment : Fragment() {
             }
         }
 
+        binding.Recommandbtn.setOnClickListener{
+            val action= HomeFragmentDirections.actionNavigationHomeToRecommandFragment()
+            navController?.navigate(action)
+        }
         return root
     }
 }

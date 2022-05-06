@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "464793319320",
+    "project_id": "eater-ff454",
+    "storage_bucket": "eater-ff454.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464793319320:android:f92ee37b014b4354ba5ded",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464793319320-79c6lfcr4gocc89gk9i9ukt8emjf6j12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD16jJeNlfBPjmcP9DHiHh4ZGYCEcfzmUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464793319320-79c6lfcr4gocc89gk9i9ukt8emjf6j12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

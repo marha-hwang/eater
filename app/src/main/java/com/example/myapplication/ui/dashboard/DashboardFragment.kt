@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import com.google.android.gms.location.*
+
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -26,6 +27,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -85,6 +87,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             pageNumber = 1
             searchKeyword(keyword, pageNumber)
         }
+        binding.btnZoomButton.setOnClickListener{
+            binding.mapView.zoomIn(true)
+        }
+        binding.btnZoomOutButton.setOnClickListener{
+            binding.mapView.zoomOut(true)
+        }
 
         // 이전 페이지 버튼
         binding.btnPrevPage.setOnClickListener {
@@ -92,6 +100,8 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             binding.tvPageNumber.text = pageNumber.toString()
             searchKeyword(keyword, pageNumber)
         }
+
+
 
         // 다음 페이지 버튼
         binding.btnNextPage.setOnClickListener {
@@ -160,6 +170,28 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 startLocationUpdates()
             }
         }
+        
+        
+        
+        
+
+        fun zoomOut() {//줌아웃
+            binding.mapView.zoomOut(true)
+        }
+
+        fun zoomIn() {//줌인
+            binding.mapView.zoomIn(true)
+        }
+
+        //지도 맵을 확대하기
+       binding.btnZoomButton.setOnClickListener{
+            zoomIn()
+        }
+        //지도 맵 축소하기
+        binding.btnZoomOutButton.setOnClickListener{
+            zoomOut()
+        }
+
 
         //지도클릭시 키보드 사라지기
        binding.mapView.setMapViewEventListener(this)
