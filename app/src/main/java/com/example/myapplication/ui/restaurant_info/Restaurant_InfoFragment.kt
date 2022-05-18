@@ -51,6 +51,8 @@ class Restaurant_InfoFragment : Fragment() {
         _binding = RestaurantInfoFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
+
         val args by navArgs<Restaurant_InfoFragmentArgs>()
         binding.restaurantAddress.text = args.restaurantAddress
         binding.restaurantName.text = args.restaurantName
@@ -211,6 +213,12 @@ class Restaurant_InfoFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).bottomNavigationShow(true)
+        Log.d("","bottom info")
     }
 
 }

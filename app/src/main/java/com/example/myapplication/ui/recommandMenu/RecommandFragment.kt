@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentRecommandBinding
 import com.example.myapplication.ui.recommandMenu.model.Food
 import com.example.myapplication.ui.recommandMenu.model.People
@@ -36,6 +37,8 @@ class RecommandFragment : Fragment() {
 
         _binding = FragmentRecommandBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
 
         binding.groupFoodType.setOnClickedButtonListener { _, position ->
             selectFoodOption = enumValues<Food>().first { it.index == position }
@@ -83,7 +86,7 @@ class RecommandFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        (activity as MainActivity).bottomNavigationShow(true)
     }
 
 }
