@@ -35,6 +35,7 @@ class ReviewsOfRestaurantViewModel : ViewModel() {
                 if (document.get("restaurant_address").toString().equals(restaurant_address)) {
                     Reviews.add(
                         ReviewsData(
+                            document.id,
                             document.get("restaurant_address").toString(),
                             document.get("restaurant_name").toString(),
                             document.get("title").toString(),

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding.inflate
 import com.example.myapplication.databinding.SearchFragmentBinding
@@ -30,6 +31,8 @@ class SearchFragment : Fragment() {
         binding.toolbar.setupWithNavController(nav)
         binding.toolbar.setTitle(null) //타이틀 없애기
 
+        (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
+
         //home 프래그먼트로 검색어 전달
         binding.imageButton.setOnClickListener {
             val search_input = binding.searchInputText.text.toString()
@@ -37,5 +40,10 @@ class SearchFragment : Fragment() {
             nav?.navigate(action)
         }
         return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).bottomNavigationShow(true)
     }
 }
