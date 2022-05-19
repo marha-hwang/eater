@@ -87,12 +87,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             pageNumber = 1
             searchKeyword(keyword, pageNumber)
         }
-        binding.btnZoomButton.setOnClickListener{
-            binding.mapView.zoomIn(true)
-        }
-        binding.btnZoomOutButton.setOnClickListener{
-            binding.mapView.zoomOut(true)
-        }
+//        binding.btnZoomButton.setOnClickListener{
+//            binding.mapView.zoomIn(true)
+//        }
+//        binding.btnZoomOutButton.setOnClickListener{
+//            binding.mapView.zoomOut(true)
+//        }
 
         // 이전 페이지 버튼
         binding.btnPrevPage.setOnClickListener {
@@ -184,13 +184,13 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         }
 
         //지도 맵을 확대하기
-       binding.btnZoomButton.setOnClickListener{
-            zoomIn()
-        }
-        //지도 맵 축소하기
-        binding.btnZoomOutButton.setOnClickListener{
-            zoomOut()
-        }
+//       binding.btnZoomButton.setOnClickListener{
+//            zoomIn()
+//        }
+//        //지도 맵 축소하기
+//        binding.btnZoomOutButton.setOnClickListener{
+//            zoomOut()
+//        }
 
 
         //지도클릭시 키보드 사라지기
