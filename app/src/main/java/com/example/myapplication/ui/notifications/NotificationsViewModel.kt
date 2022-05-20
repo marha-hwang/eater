@@ -31,6 +31,7 @@ class NotificationsViewModel : ViewModel() {
          for(document in documents){
             Reviews.add(
                ReviewsData(
+                  document.id,
                   document.get("restaurant_address").toString(),
                   document.get("restaurant_name").toString(),
                   document.get("title").toString(),

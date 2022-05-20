@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentNotificationsBinding
 import com.example.myapplication.databinding.FragmentReviewBinding
@@ -69,6 +70,8 @@ class ReviewFragment : Fragment() {
                 "content" to content,
                 "date" to FieldValue.serverTimestamp(),
                 "writer" to userid,
+                "likes" to 0,
+                "LikeUsers" to arrayListOf<String>()
             )
             itemsCollectionRef.add(itemMap) //새로운 document생성후 필드 추가
                 .addOnSuccessListener { navController.navigateUp() }
@@ -79,9 +82,9 @@ class ReviewFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.myapplication.ui.dashboard
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
@@ -18,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentDashboardBinding
 import com.google.android.gms.location.*
-
+import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -27,8 +28,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -57,6 +56,13 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
+
+    private var x : String = "126.978652258823"
+    private var y : String = "37.56682420267543"
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,6 +78,10 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         binding.rvList.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = listAdapter
+
+
+
+
         // 리스트 아이템 클릭 시 해당 위치로 이동
         listAdapter.setItemClickListener(object : com.example.myapplication.ui.dashboard.ListAdapter.OnItemClickListener  {
             override fun onClick(v: View, position: Int) {
@@ -126,23 +136,33 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 try { // 다른화면 전환시 NullPointerException이 계속 발생하여 try catch 문을 넣어줌
                     binding.mapView.removeAllPOIItems()
                     mLastLocation = locationResult.lastLocation
-                    val date: Date = Calendar.getInstance().time
-                    val simpleDateFormat = SimpleDateFormat("hh:mm:ss a")
+                    x = mLastLocation.longitude.toString()
+                    y = mLastLocation.latitude.toString()
                     Log.d(
-                        ContentValues.TAG,
-                        simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
-                    )
-
+                        ContentValues.TAG,"")
                     val point = MapPOIItem()
                     point.apply {
                         itemName = "현재 위치"
                         mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.latitude,
                             mLastLocation.longitude)
-                        markerType = MapPOIItem.MarkerType.BluePin
+                        markerType = MapPOIItem.MarkerType.YellowPin
                         selectedMarkerType = MapPOIItem.MarkerType.RedPin
                     }
+                    val circle1 = MapCircle(
+                        MapPoint.mapPointWithGeoCoord(y.toDouble(), x.toDouble()),  // center
+                        3000,  // radius
+                        Color.argb(30,55,145,181),  // strokeColor
+                        Color.argb(30,55, 145, 181) // fillColor
+                    )
+
+                    binding.mapView.addCircle(circle1)
                     binding.mapView.addPOIItem(point)
-                    binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 2,true)
+                    binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 5,true)
+
+                    searchKeyword("음식점",1)
+
+
+
                 }catch(e: java.lang.NullPointerException){
                     Log.d("remove catch", "try catch Remove Marker")
                 }
@@ -193,6 +213,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         }
 
 
+
+
+
+
+
+
         //지도클릭시 키보드 사라지기
        binding.mapView.setMapViewEventListener(this)
 
@@ -203,12 +229,14 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
+        val radius:Int = 3000
+
         val retrofit = Retrofit.Builder()          // Retrofit 구성
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(KakaoAPI::class.java)            // 통신 인터페이스를 객체로 생성
-        val call = api.getSearchKeyword(API_KEY, keyword, page)    // 검색 조건 입력
+        val call = api.getSearchKeyword(API_KEY, keyword, page, x, y, radius)    // 검색 조건 입력
 
         // API 서버에 요청
         call.enqueue(object: Callback<ResultSearchKeyword> {
@@ -229,11 +257,14 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         if (!searchResult?.documents.isNullOrEmpty()) {
             // 검색 결과 있음
             listItems.clear()                   // 리스트 초기화
-            binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
+            //binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
             for (document in searchResult!!.documents) {
-                // 결과를 리사이클러 뷰에 추가
+
                 val item = ListLayout(document.place_name,
                     document.road_address_name,
+
+
+
                     document.address_name,
                     document.x.toDouble(),
                     document.y.toDouble())
@@ -254,6 +285,9 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
             binding.btnNextPage.isEnabled = !searchResult.meta.is_end // 페이지가 더 있을 경우 다음 버튼 활성화
             binding.btnPrevPage.isEnabled = pageNumber != 1             // 1페이지가 아닐 경우 이전 버튼 활성화
+
+
+
 
         } else {
             // 검색 결과 없음

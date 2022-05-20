@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentNotificationsBinding
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -39,6 +41,7 @@ class NotificationsFragment : Fragment() {
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
+        LoadBestReview()
         notificationsViewModel.LoadReviews()
 
         notificationsViewModel.ReviewList.observe(viewLifecycleOwner){
@@ -52,5 +55,16 @@ class NotificationsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun LoadBestReview(){
+        val db: FirebaseFirestore = Firebase.firestore
+        val itemsCollectionRef = db.collection("Reviews").orderBy("likes", Query.Direction.DESCENDING)
+
+        itemsCollectionRef.get().addOnSuccessListener {
+            binding.bestTitle.text =  it.documents.get(0).get("title").toString()
+            binding.bestContent.text =  it.documents.get(0).get("content").toString()
+            binding.bestLikes.text =  it.documents.get(0).get("likes").toString()
+        }
     }
 }

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentNotificationsBinding
 import com.example.myapplication.databinding.ReviewsOfRestaurantFragmentBinding
@@ -21,7 +22,6 @@ class reviewsOfRestaurantFragment : Fragment() {
     private var _binding: ReviewsOfRestaurantFragmentBinding? = null
 
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class reviewsOfRestaurantFragment : Fragment() {
         val restaurant_name = args.restaurantName
         val restaurant_address = args.restaurantAddress
 
-        val adapter = NotificationsAdapter()
+        val adapter = ReviewsOfResAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -52,9 +52,8 @@ class reviewsOfRestaurantFragment : Fragment() {
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
     }
-
 }
