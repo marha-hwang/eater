@@ -23,17 +23,6 @@
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/menu/menu.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1695" />
         <entry key="..\:/Users/work/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1695" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/activity_main.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/detail_review_fragment.xml" value="0.22" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/fragment_dashboard.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/fragment_home.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/fragment_mypage.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/fragment_notifications.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/fragment_review.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/item_comment.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/item_list.xml" value="0.575" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/item_reply.xml" value="0.32760416666666664" />
-        <entry key="..\:/Users/work/AndroidStudioProjects/eater1/app/src/main/res/layout/item_review.xml" value="0.575" />
         <entry key="..\:/eatertest/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
         <entry key="..\:/eatertest/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/eatertest/app/src/main/res/layout/fragment_home.xml" value="0.3619791666666667" />
@@ -50,22 +39,35 @@
         <entry key="..\:/mkdir/app/src/main/res/layout/fragment_home.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/fragment_mypage.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/item_list.xml" value="0.18489583333333334" />
-        <entry key="..\:/mkdir/app/src/main/res/layout/restaurant__info_fragment.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/search_fragment.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.193" />
         <entry key="..\:/mkdir/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.193" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/gps_icon.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/home_icon.xml" value="0.142" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/logo_icon.xml" value="0.2285" />
+        <entry key="app/src/main/res/drawable/map_icon.xml" value="0.142" />
+        <entry key="app/src/main/res/drawable/mypage_icon.xml" value="0.142" />
+        <entry key="app/src/main/res/drawable/review_icon.xml" value="0.142" />
+        <entry key="app/src/main/res/drawable/search_icon.xml" value="0.206" />
+        <entry key="app/src/main/res/drawable/setting_icon.xml" value="0.142" />
         <entry key="app/src/main/res/layout/acticity_second.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.21920643722395056" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_info.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.2234375" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.151268115942029" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.34972229003906247" />
         <entry key="app/src/main/res/layout/fragment_mypage.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/fragment_recommand.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_review.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.151268115942029" />
-        <entry key="app/src/main/res/layout/item_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.4098360655737705" />
+        <entry key="app/src/main/res/layout/item_review.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/list_layout.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/restaurant__info_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.13333333333333333" />
