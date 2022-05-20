@@ -32,7 +32,7 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(place_name: String, address_name: String, place_url: String) {
             binding.textView.text = place_name
-            binding.textView2.text = address_name
+            //binding.textView2.text = address_name
             binding.textView3.text = place_url
             //불러온 이미지 바인딩하기
 

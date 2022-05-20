@@ -146,6 +146,5 @@ object SampleData {
         FoodModel("리조또",Food.Western,People.Family),
         FoodModel("치킨",Food.Western,People.Family),
         FoodModel("타코",Food.Western,People.Family),
-
         )
 }
