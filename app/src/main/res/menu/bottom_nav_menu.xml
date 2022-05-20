@@ -3,29 +3,29 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/home_icon"
         android:title="@string/title_home" />
 
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@android:drawable/sym_action_chat"
+        android:icon="@drawable/review_icon"
         android:title="@string/title_notifications" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/map_icon"
         android:title="@string/title_dashboard" />
 
 
     <item
         android:id="@+id/navigation_mypage"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@drawable/mypage_icon"
         android:title="@string/title_mypage" />
 
     <item
         android:id="@+id/navigation_setting"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/setting_icon"
         android:title="@string/title_setting" />
 
 </menu>

@@ -97,6 +97,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             pageNumber = 1
             searchKeyword(keyword, pageNumber)
         }
+        binding.btnZoomButton.setOnClickListener{
+            binding.mapView.zoomIn(true)
+        }
+        binding.btnZoomOutButton.setOnClickListener{
+            binding.mapView.zoomOut(true)
+        }
 
         // 이전 페이지 버튼
         binding.btnPrevPage.setOnClickListener {
@@ -184,6 +190,10 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 startLocationUpdates()
             }
         }
+        
+        
+        
+        
 
         fun zoomOut() {//줌아웃
             binding.mapView.zoomOut(true)

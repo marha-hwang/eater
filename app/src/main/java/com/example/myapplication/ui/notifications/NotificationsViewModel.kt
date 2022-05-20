@@ -50,7 +50,7 @@ class NotificationsViewModel : ViewModel() {
       }
    }
 
-   fun  cnovertDateToTimestamp(timestamp: Timestamp): String{
+   fun cnovertDateToTimestamp(timestamp: Timestamp): String{
       val timeStampToDate = timestamp.toDate()
       val simpleDateFormat = SimpleDateFormat("MM-dd/HH시-mm분")
       val date = simpleDateFormat.format(timeStampToDate)
