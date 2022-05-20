@@ -82,58 +82,64 @@ class Restaurant_InfoFragment : Fragment() {
             var xhr_url = "https://place.map.kakao.com/main/v/" + url[3]
             Log.d("xhr_url", xhr_url)
 
-            val doc = Jsoup.connect(xhr_url)
-                .ignoreContentType(true).execute().body().toString()
-            val jsonObject = JSONObject(doc) //문자열을 json객체로변환
-
-            val photoUrl = try {
-                jsonObject.getJSONObject("basicInfo").getString("mainphotourl")
-            } catch (e: org.json.JSONException) {
+            val doc = try {
+                Jsoup.connect(xhr_url)
+                    .ignoreContentType(true).execute().body().toString()
+            } catch (e: org.jsoup.HttpStatusException) {
                 "정보없음"
             }
+            if (!doc.equals("정보없음")) {
+                val jsonObject = JSONObject(doc) //문자열을 json객체로변환
 
-            val phonenum = try {
-                jsonObject.getJSONObject("basicInfo").getString("phonenum")
-            } catch (e: org.json.JSONException) {
-                "정보없음"
-            }
+                val photoUrl = try {
+                    jsonObject.getJSONObject("basicInfo").getString("mainphotourl")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
 
-            val menu = try {
-                jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
-                    .getJSONObject(0).getString("menu")
-            } catch (e: org.json.JSONException) {
-                "정보없음"
-            }
+                val phonenum = try {
+                    jsonObject.getJSONObject("basicInfo").getString("phonenum")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
 
-            val comment = try {
-                jsonObject.getJSONObject("comment").getJSONArray("list")
-                    .getJSONObject(0).getString("contents")
-            } catch (e: org.json.JSONException) {
-                "정보없음"
-            }
+                val menu = try {
+                    jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
+                        .getJSONObject(0).getString("menu")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
 
-            activity?.runOnUiThread {
-                binding.textView4.text = phonenum
-                binding.textView5.text = menu
-                binding.textView6.text = comment
+                val comment = try {
+                    jsonObject.getJSONObject("comment").getJSONArray("list")
+                        .getJSONObject(0).getString("contents")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
 
-                //식당이미지를 코루틴으로 불러오기
-                CoroutineScope(Dispatchers.Main).launch {
-                    if(!photoUrl.equals("정보없음")) {
-                        var urlArg = photoUrl.split("/")
-                        var url = "https://"
-                        for (i: Int in 2..urlArg.size - 1) {
-                            if (i != urlArg.size - 1) {
-                                url = url + urlArg[i] + "/"
-                            } else url = url + urlArg[i]
+                activity?.runOnUiThread {
+                    binding.textView4.text = phonenum
+                    binding.textView5.text = menu
+                    binding.textView6.text = comment
+
+                    //식당이미지를 코루틴으로 불러오기
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (!photoUrl.equals("정보없음")) {
+                            var urlArg = photoUrl.split("/")
+                            var url = "https://"
+                            for (i: Int in 2..urlArg.size - 1) {
+                                if (i != urlArg.size - 1) {
+                                    url = url + urlArg[i] + "/"
+                                } else url = url + urlArg[i]
+                            }
+                            Log.d("photo Url", url)
+
+
+                            val bitmap = withContext(Dispatchers.IO) {
+                                ImageLoader.loadImage(url)
+                            }
+                            binding.imageView.setImageBitmap(bitmap)
                         }
-                        Log.d("photo Url", url)
-
-
-                        val bitmap = withContext(Dispatchers.IO) {
-                            ImageLoader.loadImage(url)
-                        }
-                        binding.imageView.setImageBitmap(bitmap)
                     }
                 }
             }

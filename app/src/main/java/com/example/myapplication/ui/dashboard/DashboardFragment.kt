@@ -80,7 +80,6 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 binding.mapView.setMapCenterPointAndZoomLevel(mapPoint, 1, true)
             }
         })
-
         // 검색 버튼
         binding.btnSearch.setOnClickListener {
             keyword = binding.etSearchField.text.toString()
@@ -172,7 +171,6 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         fun zoomIn() {//줌인
             binding.mapView.zoomIn(true)
         }
-
         //지도 맵을 확대하기
        binding.btnZoomButton.setOnClickListener{
             zoomIn()
@@ -181,16 +179,10 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         binding.btnZoomOutButton.setOnClickListener{
             zoomOut()
         }
-
-
         //지도클릭시 키보드 사라지기
        binding.mapView.setMapViewEventListener(this)
-
-
         return root
     }
-
-
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
         val retrofit = Retrofit.Builder()          // Retrofit 구성

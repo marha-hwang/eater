@@ -23,6 +23,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.ui.home.HomeFragment
+import net.daum.mf.map.api.MapView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
