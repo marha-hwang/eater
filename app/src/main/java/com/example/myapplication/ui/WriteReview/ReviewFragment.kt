@@ -87,12 +87,31 @@ class ReviewFragment : Fragment() {
             )
             itemsCollectionRef.add(itemMap) //새로운 document생성후 필드 추가
                 .addOnSuccessListener {
+                    try{
+                        //첨부된 사진 형식변환
+                        val bitmap = (binding.foodImage.drawable as BitmapDrawable).bitmap
+                        val baos = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                        val data = baos.toByteArray()
+                        //파이어베이스에 올리기
+                        var storageRef = Firebase.storage.reference
+                        val imageRef = storageRef.child(it.id).child("food.jpg")
+                        var uploadTask = imageRef.putBytes(data)
+                        uploadTask.addOnFailureListener {
+                            Log.d("이미지", "이미지첨부실패")
+                        }
+                            .addOnSuccessListener {
+                                Log.d("이미지", "이미지첨부성공")
+                            }
+                    }catch(e:java.lang.ClassCastException){ "이미지 첨부안함"}
+
                     navController.navigateUp()
                 }
                 .addOnFailureListener { }
             //itemsCollectionRef.document("docTest").set(itemMap) //기존 document에 덮어쓰기
         }
 
+        //갤러리로 이동하여 사진을 가져옴
         val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){ uri: Uri? ->
             //갤러리에서 사진을 가져온후 수행할 작업정의
             binding.foodImage.setImageURI(uri)
@@ -102,23 +121,6 @@ class ReviewFragment : Fragment() {
                 Log.d("이미지", "이미지첨부")
                 getContent.launch("image/*")
             }
-        }
-
-        //파이어베이스 storage에 이미지 올리는방법
-        binding.button.setOnClickListener {
-            var storageRef = Firebase.storage.reference
-            val imageRef = storageRef.child("test").child("test1.jpg")
-            val bitmap = (binding.foodImage.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos)
-            val data = baos.toByteArray()
-            var uploadTask = imageRef.putBytes(data)
-            uploadTask.addOnFailureListener{
-                Log.d("이미지", "이미지첨부실패")
-            }
-                .addOnSuccessListener {
-                    Log.d("이미지", "이미지첨부성공")
-                }
         }
 
         return root

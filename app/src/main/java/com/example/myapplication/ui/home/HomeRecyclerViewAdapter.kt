@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.MainActivity
+import com.example.myapplication.R
 import com.example.myapplication.api.Place
 import com.example.myapplication.databinding.ItemListBinding
 import com.example.myapplication.ui.restaurant_info.ImageLoader
@@ -22,11 +23,13 @@ import org.jsoup.Jsoup
 import java.net.MalformedURLException
 import java.net.URL
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
 class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val context: Context) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
 
     var placeList = mutableListOf<Place>() //데이터 세팅을 위한 변수
+    var photoMap = HashMap<String, String>() // 사진url을 저장하기 위한맵
 
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,33 +37,36 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
             binding.textView.text = place_name
             //binding.textView2.text = address_name
             binding.textView3.text = place_url
+
             //불러온 이미지 바인딩하기
-
             thread(start = true) {
-                var url = place_url.split("/")
-                var xhr_url = "https://place.map.kakao.com/main/v/" + url[3]
-                Log.d("xhr_url", xhr_url)
-                val doc = try {
-                    Jsoup.connect(xhr_url)
-                        .ignoreContentType(true).execute().body().toString()
-                } catch (e: org.jsoup.HttpStatusException) {
-                    "정보없음"
-                }
-                Log.e("thread id ", Thread.currentThread().toString())
-                Log.d("doc ", doc)
-                if(!doc.equals("정보없음")) {
-                    val jsonObject = JSONObject(doc)
-
-                    val photoUrl = try {
-                        jsonObject.getJSONObject("basicInfo").getString("mainphotourl")
-                    } catch (e: org.json.JSONException) {
+                if(!photoMap.containsKey(place_url)){
+                    var url = place_url.split("/")
+                    var xhr_url = "https://place.map.kakao.com/main/v/" + url[3]
+                    Log.d("xhr_url", xhr_url)
+                    val doc = try {
+                        Jsoup.connect(xhr_url)
+                            .ignoreContentType(true).execute().body().toString()
+                    } catch (e: org.jsoup.HttpStatusException) {
                         "정보없음"
                     }
+                    Log.e("thread id ", Thread.currentThread().toString())
+                    Log.d("doc ", doc)
+                    if(!doc.equals("정보없음")) {
+                        val jsonObject = JSONObject(doc)
+
+                        val photoUrl = try {
+                            jsonObject.getJSONObject("basicInfo").getString("mainphotourl")
+                        } catch (e: org.json.JSONException) {
+                            "정보없음"
+                        }
+                        photoMap.put(place_url, photoUrl)
+                }
 
                     //식당이미지를 코루틴으로 불러오기
                     CoroutineScope(Dispatchers.Default).launch {
-                        if (!photoUrl.equals("정보없음")) {
-                            var urlArg = photoUrl.split("/")
+                        if (!photoMap.getValue(place_url).equals("정보없음")) {
+                            var urlArg = photoMap.getValue(place_url).split("/")
                             var url = "https://"
                             for (i: Int in 2..urlArg.size - 1) {
                                 if (i != urlArg.size - 1) {
@@ -80,14 +86,6 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
                     }
                 }
             }
-
-
-
-
-
-
-
-
 
             binding.CardView.setOnClickListener {
                 val nav = findNavController(it)
@@ -118,6 +116,10 @@ class HomeRecyclerViewAdapter(private val viewModel: HomeViewModel, private val 
             placeList[position].address_name,
             placeList[position].place_url,
         )
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun getItemCount(): Int {
