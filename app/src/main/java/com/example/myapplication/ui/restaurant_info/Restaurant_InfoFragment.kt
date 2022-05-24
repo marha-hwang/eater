@@ -68,6 +68,7 @@ class Restaurant_InfoFragment : Fragment() {
             val itemMap = hashMapOf(
                 "res_name" to args.restaurantName,
                 "res_address" to args.restaurantAddress,
+                "res_url" to args.restaurantUrl,
                 "likes" to 0,
                 "LikeUsers" to arrayListOf<String>()
             )

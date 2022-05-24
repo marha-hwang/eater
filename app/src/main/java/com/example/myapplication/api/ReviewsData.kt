@@ -14,6 +14,12 @@ data class ReviewsData(
     val writer: String
 )
 
+data class LikesData(
+    val restaurant_address: String,
+    val restaurant_name: String,
+    val restaurant_url: String
+)
+
 data class CommentData(
     val reviewID: String,
     val commentID: String,

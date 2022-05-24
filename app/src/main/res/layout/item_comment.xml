@@ -5,80 +5,87 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/commentView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:fillViewport="true">
 
-            <TextView
-                android:id="@+id/commentUser"
-                android:layout_width="357dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="TextView"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/comment"
-                android:layout_width="354dp"
-                android:layout_height="32dp"
-                android:layout_margin="3dp"
-                android:text="TextView"
-                android:textSize="16sp"
-                app:autoSizeTextType="uniform" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="37dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/comment_date"
-                    android:layout_width="189dp"
-                    android:layout_height="27dp"
+                    android:id="@+id/commentUser"
+                    android:layout_width="357dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:text="TextView"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/replyBtn"
-                    android:layout_width="73dp"
-                    android:layout_height="30dp"
-                    android:text="답글달기"
-                    android:textSize="8sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/comment_date"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="354dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="3dp"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    app:autoSizeTextType="uniform" />
 
-                <Button
-                    android:id="@+id/commentDelete"
-                    android:layout_width="68dp"
-                    android:layout_height="31dp"
-                    android:text="삭제"
-                    android:textSize="8sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/replyBtn"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView2"
-                android:layout_width="match_parent"
-                android:layout_height="17dp"
-                android:nestedScrollingEnabled="false" />
+                    <TextView
+                        android:id="@+id/comment_date"
+                        android:layout_width="189dp"
+                        android:layout_height="27dp"
+                        android:text="TextView"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                    <Button
+                        android:id="@+id/replyBtn"
+                        android:layout_width="73dp"
+                        android:layout_height="30dp"
+                        android:text="답글달기"
+                        android:textSize="8sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/comment_date"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/commentDelete"
+                        android:layout_width="68dp"
+                        android:layout_height="31dp"
+                        android:text="삭제"
+                        android:textSize="8sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/replyBtn"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
