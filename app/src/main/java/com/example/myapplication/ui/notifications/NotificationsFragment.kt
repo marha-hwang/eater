@@ -16,6 +16,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 class NotificationsFragment : Fragment() {
 
@@ -36,7 +38,7 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val adapter = NotificationsAdapter()
+        val adapter = NotificationsAdapter(requireContext())
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -48,6 +50,11 @@ class NotificationsFragment : Fragment() {
             adapter.notifyDataSetChanged()
             adapter.setData(it)
         }
+    /*    val storage = Firebase.storage
+        var storageRef = storage.reference
+        var imagesRef: StorageReference? = storageRef.child("images")
+        imagesRef*/
+
 
         return root
     }

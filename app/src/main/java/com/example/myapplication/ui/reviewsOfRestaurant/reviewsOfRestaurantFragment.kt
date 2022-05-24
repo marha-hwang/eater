@@ -37,7 +37,7 @@ class reviewsOfRestaurantFragment : Fragment() {
         val restaurant_name = args.restaurantName
         val restaurant_address = args.restaurantAddress
 
-        val adapter = ReviewsOfResAdapter()
+        val adapter = ReviewsOfResAdapter(requireContext())
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

@@ -24,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var photoMap = HashMap<String, String>() // 사진url을 저장하기 위한맵
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +93,25 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+    //사용자에게 앨법접근 권한을 요청하는 함수
+    fun checkPermissionForAlbum(context: Context): Boolean{
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "checkPermissionForAlbum() 권한 상태 : O")
+                true
+            } else {
+                // 권한이 없으므로 권한 요청 알림 보내기
+                Log.d(TAG, "checkPermissionForAlbum() 권한 상태 : X")
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 20)
+                false
+            }
+        } else {
+            true
+        }
+    }
+
+
     fun bottomNavigationShow(boolean: Boolean){
         binding.navView.isVisible = boolean
     }

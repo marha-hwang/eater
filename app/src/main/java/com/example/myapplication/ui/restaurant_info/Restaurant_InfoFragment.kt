@@ -196,7 +196,7 @@ class Restaurant_InfoFragment : Fragment() {
                     binding.textView6.text = comment
 
                     //식당이미지를 코루틴으로 불러오기
-                    CoroutineScope(Dispatchers.Main).launch {
+                    CoroutineScope(Dispatchers.Default).launch {
                         if (!photoUrl.equals("정보없음")) {
                             var urlArg = photoUrl.split("/")
                             var url = "https://"
@@ -211,7 +211,9 @@ class Restaurant_InfoFragment : Fragment() {
                             val bitmap = withContext(Dispatchers.IO) {
                                 ImageLoader.loadImage(url)
                             }
-                            binding.imageView.setImageBitmap(bitmap)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                binding.imageView.setImageBitmap(bitmap)
+                            }
                         }
                     }
                 }
