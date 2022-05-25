@@ -28,8 +28,11 @@
                     android:id="@+id/userInfo"
                     android:layout_width="413dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="36dp"
-                    android:text="~~~~님 의 마이페이지"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="MYPAGE"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#EF9999"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,35 +52,35 @@
                     android:id="@+id/mylikes"
                     android:layout_width="130dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="40dp"
                     android:text="나의 좋아요"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.43"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/userInfo" />
 
                 <TextView
                     android:id="@+id/myreviews"
-                    android:layout_width="106dp"
+                    android:layout_width="130dp"
                     android:layout_height="35dp"
-                    android:layout_marginTop="12dp"
-                    android:text="나의 리뷰"
+                    android:layout_marginTop="8dp"
+                    android:text="내가 쓴 리뷰"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.43"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/likeView" />
 
                 <TextView
                     android:id="@+id/mycomments"
-                    android:layout_width="107dp"
+                    android:layout_width="130dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="28dp"
-                    android:text="나의 댓글"
+                    android:layout_marginTop="24dp"
+                    android:text="내가 쓴 댓글"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.43"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/reviewView" />
 
@@ -99,10 +102,12 @@
 
                 <Button
                     android:id="@+id/reviewBtn"
-                    android:layout_width="56dp"
+                    android:layout_width="65dp"
                     android:layout_height="38dp"
                     android:layout_marginTop="8dp"
                     android:text="열기"
+                    android:background="#EF9999"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.036"
                     app:layout_constraintStart_toEndOf="@+id/myreviews"
@@ -110,10 +115,12 @@
 
                 <Button
                     android:id="@+id/CommentBtn"
-                    android:layout_width="57dp"
+                    android:layout_width="65dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
                     android:text="열기"
+                    android:background="#EF9999"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.028"
                     app:layout_constraintStart_toEndOf="@+id/mycomments"
@@ -121,13 +128,14 @@
 
                 <Button
                     android:id="@+id/mylikeBtn"
-                    android:layout_width="54dp"
+                    android:layout_width="65dp"
                     android:layout_height="38dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="40dp"
+                    android:background="#EF9999"
                     android:text="열기"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.008"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/mylikes"
                     app:layout_constraintTop_toBottomOf="@+id/userInfo" />
             </androidx.constraintlayout.widget.ConstraintLayout>

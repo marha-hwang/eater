@@ -45,9 +45,12 @@
             android:id="@+id/btn_search"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="8dp"
+            android:background="#EF9999"
             android:text="검색"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,11 +69,13 @@
             android:id="@+id/btn_prevPage"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="60dp"
+            android:background="#EF9999"
             android:enabled="false"
             android:text="이전"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -91,11 +96,13 @@
             android:id="@+id/btn_nextPage"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="60dp"
+            android:background="#EF9999"
             android:enabled="false"
             android:text="다음"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -118,17 +125,20 @@
         android:layout_height="43dp"
         android:layout_marginEnd="20dp"
         android:text="+"
+
         app:layout_constraintBottom_toTopOf="@+id/btnZoomOutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876" />
 
     <Button
         android:id="@+id/btnZoomOutButton"
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="108dp"
         android:text="-"
+
         app:layout_constraintBottom_toBottomOf="@+id/map_view"
         app:layout_constraintEnd_toEndOf="parent" />
 

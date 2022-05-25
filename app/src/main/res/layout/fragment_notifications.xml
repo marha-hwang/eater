@@ -17,32 +17,41 @@
         app:layout_constraintVertical_bias="0.671" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="406dp"
-        android:layout_height="53dp"
-        android:background="#EAE089"
+        android:id="@+id/constraintLayout2"
+        android:layout_width="390dp"
+        android:layout_height="132dp"
+        android:background="#EF9999"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912">
 
         <TextView
             android:id="@+id/best_title"
-            android:layout_width="191dp"
-            android:layout_height="22dp"
+            android:layout_width="219dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
             android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/best_content"
-            android:layout_width="210dp"
-            android:layout_height="20dp"
+            android:layout_width="219dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
             android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/best_title" />
+            app:layout_constraintTop_toBottomOf="@+id/best_title"
+            app:layout_constraintVertical_bias="0.761" />
 
         <TextView
             android:id="@+id/best_likes"
@@ -64,5 +73,21 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/best_content"
             tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Best Comment!"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/best_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
