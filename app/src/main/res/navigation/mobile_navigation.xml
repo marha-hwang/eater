@@ -52,6 +52,15 @@
         android:name="com.example.myapplication.ui.mypage.MypageFragment"
         android:label="MypageFragment"
         tools:layout="@layout/fragment_mypage" >
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_setting"
+            app:destination="@id/navigation_setting" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_detailReviewFragment"
+            app:destination="@id/detailReviewFragment" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_restaurant_InfoFragment"
+            app:destination="@id/restaurant_InfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurant_InfoFragment"
