@@ -14,7 +14,9 @@
             android:id="@+id/confirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="작성하기"
+            android:background="#EF9999"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -24,14 +26,15 @@
 
         <EditText
             android:id="@+id/reviewText"
-            android:layout_width="406dp"
-            android:layout_height="155dp"
-            android:layout_marginTop="180dp"
+            android:layout_width="388dp"
+            android:layout_height="82dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="208dp"
             android:ems="10"
-            android:hint="리뷰작성"
+            android:hint="내용 입력"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.695"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodImage" />
 
@@ -39,6 +42,7 @@
             android:id="@+id/ratingBar"
             android:layout_width="245dp"
             android:layout_height="44dp"
+            android:layout_marginLeft="80dp"
             app:layout_constraintBottom_toTopOf="@+id/reviewText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.024"
@@ -50,6 +54,7 @@
             android:id="@+id/reviewTitle"
             android:layout_width="291dp"
             android:layout_height="62dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="190dp"
             android:layout_marginBottom="31dp"
             android:ems="10"
@@ -57,10 +62,10 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/reviewText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.905" />
+            app:layout_constraintVertical_bias="0.975" />
 
         <ImageView
             android:id="@+id/foodImage"
@@ -75,10 +80,14 @@
 
         <Button
             android:id="@+id/addPicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="20dp"
+            android:background="#EF9999"
             android:text="사진추가"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/foodImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.049"

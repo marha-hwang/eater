@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.LoginActivity
-import com.example.myapplication.databinding.ActivityLoginBinding
+//import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.databinding.FragmentSettingBinding
 import com.kakao.sdk.user.UserApiClient
 

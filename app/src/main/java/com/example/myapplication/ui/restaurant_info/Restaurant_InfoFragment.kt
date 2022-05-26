@@ -39,6 +39,7 @@ import kotlin.concurrent.thread
 
 class Restaurant_InfoFragment : Fragment() {
 
+
     private var _binding: RestaurantInfoFragmentBinding? = null
     private lateinit var viewModel: RestaurantInfoViewModel
     private val binding get() = _binding!!
