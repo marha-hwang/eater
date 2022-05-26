@@ -1,12 +1,13 @@
 package com.example.myapplication.ui.home
 
-
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.icu.number.IntegerWidth
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -37,11 +38,12 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
 
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(place_name: String, address_name: String, place_url: String) {
+        //val checkbox: CheckBox = itemView!!.findViewById<CheckBox>(R.id.koreanfood)
+
+        fun bind(place_name: String, address_name: String, place_url: String, category_name: String) {
             binding.textView.text = place_name
             //binding.textView2.text = address_name
-            binding.textView3.text = place_url
-
+            binding.textView3.text = category_name
             binding.CardView.setOnClickListener{
                 val nav = findNavController(it)
                 val action = HomeFragmentDirections.actionNavigationHomeToRestaurantInfoFragment4(
@@ -76,8 +78,6 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
                         Log.d("이미지", "이미지url가져옴")
                     }
                 }
-
-
                 //식당이미지를 코루틴으로 불러오기
                 CoroutineScope(Dispatchers.Default).launch {
                     if (!setURL_interface.getUrl(place_url).equals("정보없음")) {
@@ -139,7 +139,9 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
             placeList[position].place_name,
             placeList[position].address_name,
             placeList[position].place_url,
+            placeList[position].category_name
         )
+        Log.e("position", Integer.toString(position))
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -39,8 +39,8 @@ class HomeViewModel : ViewModel() {
                 call: Call<RestaurantData>,
                 response: Response<RestaurantData>
             ) {
-                Log.d("ApiTest", "Raw: ${response.raw()}")
-                Log.d("ApiTest", "Raw: ${response.body()}")
+                Log.e("ApiTest", "Raw: ${response.raw()}")
+                Log.e("ApiTest", "Raw: ${response.body()}")
                 places.clear()
                 if (response.body()!=null) {
                     for (i: Int in 0 until response.body()!!.documents.size) {
@@ -50,6 +50,7 @@ class HomeViewModel : ViewModel() {
                                 response.body()?.documents!!.get(i)!!.address_name,
                                 response.body()?.documents!!.get(i)!!.road_address_name,
                                 response.body()?.documents!!.get(i)!!.place_url,
+                                response.body()?.documents!!.get(i)!!.category_name,
                                 response.body()?.documents!!.get(i)!!.x,
                                 response.body()?.documents!!.get(i)!!.y
                             )

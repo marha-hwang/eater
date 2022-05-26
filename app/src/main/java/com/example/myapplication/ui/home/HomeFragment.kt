@@ -159,20 +159,38 @@ class HomeFragment : Fragment(),setURL_interface {
             }
         }
 
+        //카드뷰 출력
         val adapter = HomeRecyclerViewAdapter(this, HomeViewModel(), this.requireContext())
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = GridLayoutManager(activity, 2) // 가로정렬
-        //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
+        if(binding.koreanfood.isChecked){
+            for(i in 0..14) {
+                if (adapter.placeList[i].category_name == "음식점 > 한식") {
+                    binding.recyclerView.adapter = adapter
+                    binding.recyclerView.setHasFixedSize(true)
+                    binding.recyclerView.layoutManager = GridLayoutManager(activity, 2) // 가로정렬
+                    //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
+                    homeViewModel.RestaurantList.observe(viewLifecycleOwner) {
+                        adapter.notifyDataSetChanged()
+                        adapter.setData(it)
+                    }
+                    homeViewModel.address.observe(viewLifecycleOwner) {
+                        binding.textView8.text = homeViewModel.address.value.toString()
+                    }
+                }
+            }
+        } else {
+            binding.recyclerView.adapter = adapter
+            binding.recyclerView.setHasFixedSize(true)
+            binding.recyclerView.layoutManager = GridLayoutManager(activity, 2) // 가로정렬
+            //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
 
-        homeViewModel.RestaurantList.observe(viewLifecycleOwner) {
-            adapter.notifyDataSetChanged()
-            adapter.setData(it)
+            homeViewModel.RestaurantList.observe(viewLifecycleOwner) {
+                adapter.notifyDataSetChanged()
+                adapter.setData(it)
+            }
+            homeViewModel.address.observe(viewLifecycleOwner) {
+                binding.textView8.text = homeViewModel.address.value.toString()
+            }
         }
-        homeViewModel.address.observe(viewLifecycleOwner) {
-            binding.textView8.text = homeViewModel.address.value.toString()
-        }
-
         //툴바 커스텀
         val navController = findNavController()
         binding.toolbar.setupWithNavController(navController)
