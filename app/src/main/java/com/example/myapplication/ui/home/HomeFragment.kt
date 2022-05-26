@@ -32,6 +32,8 @@ import java.util.*
 class HomeFragment : Fragment(),setURL_interface {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var x: String = "126.978652258823"
+    private var y: String = "37.56682420267543"
 
     //현재위치를 가져오기 위한 변수
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null
@@ -76,9 +78,12 @@ class HomeFragment : Fragment(),setURL_interface {
                     simpleDateFormat.format(date) + "위도 " + mLastLocation.latitude + "경도 " + mLastLocation.longitude
                 )
 
+                // 전역변수 위도 경도값 저장
+                x = mLastLocation.longitude.toString()
+                y = mLastLocation.latitude.toString()
+
                 homeViewModel.searchAddress(
-                    mLastLocation.longitude.toString(),
-                    mLastLocation.latitude.toString(), "WGS84"
+                    x, y, "WGS84"
                 )
             }
         }
@@ -119,22 +124,22 @@ class HomeFragment : Fragment(),setURL_interface {
                 Log.d("location0", "location" + location)
                 if ((location == null) || ((location!!.longitude >= 0) && (location!!.latitude >= 0))) {
                     if (location != null) {
+                        x = location.longitude.toString()
+                        y = location.latitude.toString()
                         homeViewModel.searchAddress(
-                            location.longitude.toString(),
-                            location.latitude.toString(),
-                            "WGS84"
+                            x, y, "WGS84"
                         )
                         Log.d("location1", "location" + location!!.longitude.toString())
                     }
-                    homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
+                    homeViewModel.searchAddress(x, y, "WGS84")
                     Log.d("location2", "location: " + location)
                 } else {
-                    homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
+                    homeViewModel.searchAddress(x, y, "WGS84")
                     Log.d("location3", "location")
                 }
             }
         } else {
-            homeViewModel.searchAddress("126.978652258823", "37.56682420267543", "WGS84")
+            homeViewModel.searchAddress(x, y, "WGS84")
             Log.d("location4", "location")
         }
 
@@ -153,31 +158,22 @@ class HomeFragment : Fragment(),setURL_interface {
                     }
                     var search_keyword = homeViewModel.region_2depth_name.value.toString()
                     Log.d("coroutinTest", search_keyword)
-                    homeViewModel.searchKeyword(search_keyword, "FD6")
+                    //homeViewModel.searchKeyword(search_keyword, "FD6")
+                    homeViewModel.searchcategory(x,y, "음식점 > ")
                     Log.d("no search Input", " 검색어가 없음")
                 }
             }
         }
+        binding.koreanfood.setOnClickListener{
+            homeViewModel.searchcategory(x,y, "음식점 > 한식")
+        }
+        binding.westernfood.setOnClickListener{
+            homeViewModel.searchcategory(x,y, "음식점 > 양식")
+        }
+
 
         //카드뷰 출력
         val adapter = HomeRecyclerViewAdapter(this, HomeViewModel(), this.requireContext())
-        if(binding.koreanfood.isChecked){
-            for(i in 0..14) {
-                if (adapter.placeList[i].category_name == "음식점 > 한식") {
-                    binding.recyclerView.adapter = adapter
-                    binding.recyclerView.setHasFixedSize(true)
-                    binding.recyclerView.layoutManager = GridLayoutManager(activity, 2) // 가로정렬
-                    //binding.recyclerView.layoutManager = LinearLayoutManager(activity) //세로정렬
-                    homeViewModel.RestaurantList.observe(viewLifecycleOwner) {
-                        adapter.notifyDataSetChanged()
-                        adapter.setData(it)
-                    }
-                    homeViewModel.address.observe(viewLifecycleOwner) {
-                        binding.textView8.text = homeViewModel.address.value.toString()
-                    }
-                }
-            }
-        } else {
             binding.recyclerView.adapter = adapter
             binding.recyclerView.setHasFixedSize(true)
             binding.recyclerView.layoutManager = GridLayoutManager(activity, 2) // 가로정렬
@@ -187,9 +183,8 @@ class HomeFragment : Fragment(),setURL_interface {
                 adapter.notifyDataSetChanged()
                 adapter.setData(it)
             }
-            homeViewModel.address.observe(viewLifecycleOwner) {
-                binding.textView8.text = homeViewModel.address.value.toString()
-            }
+        homeViewModel.address.observe(viewLifecycleOwner) {
+            binding.textView8.text = homeViewModel.address.value.toString()
         }
         //툴바 커스텀
         val navController = findNavController()
