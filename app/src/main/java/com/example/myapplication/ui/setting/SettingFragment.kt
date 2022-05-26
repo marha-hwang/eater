@@ -36,10 +36,9 @@ class SettingFragment : Fragment() {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        settingViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
+
+
         binding.Loginbtn.setOnClickListener{
             val intent = Intent(this@SettingFragment.requireContext(), LoginActivity::class.java)
             startActivity(intent)

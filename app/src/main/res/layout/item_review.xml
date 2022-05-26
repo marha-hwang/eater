@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="20dp">
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="20dp"
+    app:layout_constraintCircleRadius="15dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
+        app:cardCornerRadius="20dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,60 +21,77 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="390dp"
+            android:layout_height="176dp"
             android:background="#FFE4E4">
 
             <TextView
                 android:id="@+id/NotificationTitle"
-                android:layout_width="293dp"
-                android:layout_height="34dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/NotificationContent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.032"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/NotificationContent"
-                android:layout_width="292dp"
-                android:layout_height="52dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="TextView"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.034"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.037"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.308" />
 
             <TextView
                 android:id="@+id/NotificationDate"
                 android:layout_width="89dp"
-                android:layout_height="28dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="9dp"
                 android:text="TextView"
                 android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/NotificationContent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintHorizontal_bias="0.033"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/NotificationTitle"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/NotificationContent"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NotificationTitle"
+                app:layout_constraintVertical_bias="0.741" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="308dp"
-                android:layout_height="144dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="118dp"
+                android:layout_height="111dp"
                 android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintCircleRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.912"
+                app:layout_constraintStart_toEndOf="@+id/NotificationDate"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/Resname"
+                android:layout_width="142dp"
+                android:layout_height="21dp"
+                android:layout_marginBottom="14dp"
+                android:text="TextView"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/NotificationTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.353"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NotificationDate"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

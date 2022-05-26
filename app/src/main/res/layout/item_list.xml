@@ -51,14 +51,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="178dp"
                 android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
                 android:background="#F1D1D1"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.538"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_report_image"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:srcCompat="@drawable/logo"
+                tools:srcCompat="@drawable/logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
