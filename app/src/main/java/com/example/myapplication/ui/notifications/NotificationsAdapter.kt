@@ -19,6 +19,9 @@ import com.example.myapplication.api.ReviewsData
 import com.example.myapplication.databinding.ItemReviewBinding
 import com.example.myapplication.ui.home.HomeFragmentDirections
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
@@ -49,6 +52,12 @@ class NotificationsAdapter(val context: Context) : RecyclerView.Adapter<Notifica
                                 Glide.with(context).load(it).into(binding.imageView3)
                             }
                         }
+                    }
+                    val db: FirebaseFirestore = Firebase.firestore
+                    val itemsCollectionRef = db.collection("Reviews").document(ID)
+
+                    itemsCollectionRef.get().addOnSuccessListener {
+                        binding.Resname.text = it.get("restaurant_name").toString()
                     }
 
                         binding.cardView.setOnClickListener {
