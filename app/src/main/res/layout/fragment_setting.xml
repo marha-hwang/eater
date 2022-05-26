@@ -6,25 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.setting.SettingFragment">
 
-    <Button
+    <ImageButton
         android:id="@+id/Loginbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
         android:layout_marginBottom="200dp"
-        android:text="로그인"
+        android:src="@drawable/kakao_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.572" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Unlinkbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="101dp"
+        android:layout_height="55dp"
         android:layout_marginTop="500dp"
-        android:text="공지사항"
+        android:src="@drawable/notice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -32,32 +32,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
-
-    <Button
+    <ImageButton
         android:id="@+id/Logoutbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그아웃"
+        android:layout_width="98dp"
+        android:layout_height="39dp"
+        android:src="@drawable/kakao_logout"
         app:layout_constraintBottom_toTopOf="@+id/Unlinkbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Loginbtn"
-        app:layout_constraintVertical_bias="0.497" />
+        app:layout_constraintVertical_bias="0.522" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
