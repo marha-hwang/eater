@@ -134,7 +134,8 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         val mLocationCallBack = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 try { // 다른화면 전환시 NullPointerException이 계속 발생하여 try catch 문을 넣어줌
-                    binding.mapView.removeAllPOIItems()
+                    //binding.mapView.removeAllPOIItems()
+                    binding.mapView.removeAllCircles()//써클제거
                     mLastLocation = locationResult.lastLocation
                     x = mLastLocation.longitude.toString()
                     y = mLastLocation.latitude.toString()
@@ -150,13 +151,13 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                     }
                     val circle1 = MapCircle(
                         MapPoint.mapPointWithGeoCoord(y.toDouble(), x.toDouble()),  // center
-                        3000,  // radius
+                        1000,  // radius
                         Color.argb(30,55,145,181),  // strokeColor
                         Color.argb(30,55, 145, 181) // fillColor
                     )
 
-                    binding.mapView.addCircle(circle1)
                     binding.mapView.addPOIItem(point)
+                    binding.mapView.addCircle(circle1)
                     binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 5,true)
 
                     searchKeyword("음식점",1)
@@ -229,7 +230,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
-        val radius:Int = 3000
+        val radius:Int = 9999 // 3000에서 1000으로 변경.
 
         val retrofit = Retrofit.Builder()          // Retrofit 구성
             .baseUrl(BASE_URL)
@@ -257,7 +258,9 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         if (!searchResult?.documents.isNullOrEmpty()) {
             // 검색 결과 있음
             listItems.clear()                   // 리스트 초기화
-            //binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
+            binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
+            
+            //여기에 현재 위치 추가하는걸로
             for (document in searchResult!!.documents) {
 
                 val item = ListLayout(document.place_name,
@@ -280,6 +283,23 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                     selectedMarkerType = MapPOIItem.MarkerType.RedPin
                 }
                 binding.mapView.addPOIItem(point)
+                
+
+                //여기에 내 위치 추가
+
+
+                val mypoint = MapPOIItem()
+                mypoint.apply {
+                    itemName = "현재 위치"
+                    mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.latitude,
+                        mLastLocation.longitude)
+                    markerType = MapPOIItem.MarkerType.YellowPin
+                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                }
+                binding.mapView.addPOIItem(mypoint)
+
+
+
             }
             listAdapter.notifyDataSetChanged()
 
