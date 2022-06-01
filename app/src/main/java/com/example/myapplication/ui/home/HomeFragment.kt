@@ -19,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.ui.recommandMenu.model.Food
 import com.google.android.gms.location.*
 import com.kakao.sdk.user.UserApiClient
 
@@ -117,7 +118,6 @@ class HomeFragment : Fragment(),setURL_interface {
                 Looper.myLooper()!!
             )
         }
-
         //마지막 위치정보 얻어오기, 마지막 위치 정보가 없으면 defalt 값으로 서울 시청으로 설정
         if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
             mFusedLocationProviderClient!!.lastLocation.addOnSuccessListener { location: Location? ->
@@ -164,13 +164,18 @@ class HomeFragment : Fragment(),setURL_interface {
                 }
             }
         }
-        binding.koreanfood.setOnClickListener{
-            homeViewModel.searchcategory(x,y, "음식점 > 한식")
-        }
-        binding.westernfood.setOnClickListener{
-            homeViewModel.searchcategory(x,y, "음식점 > 양식")
-        }
 
+        // 음식점 카테고리 분류
+        binding.allfood.isChecked = true
+        binding.groupCategoryType.setOnClickedButtonListener { _, position ->
+            when(position){
+                0 -> homeViewModel.searchcategory(x,y, "음식점 > ")
+                1 -> homeViewModel.searchcategory(x,y,"음식점 > 한식 , 음식점 > 치킨 , 음식점 > 분식 ")
+                2 -> homeViewModel.searchcategory(x,y,"음식점 > 중식 ")
+                3 -> homeViewModel.searchcategory(x,y,"음식점 > 일식 ")
+                4 -> homeViewModel.searchcategory(x,y,"음식점 > 양식 ")
+            }
+        }
 
         //카드뷰 출력
         val adapter = HomeRecyclerViewAdapter(this, HomeViewModel(), this.requireContext())
@@ -198,14 +203,21 @@ class HomeFragment : Fragment(),setURL_interface {
         //위치정보를 가져오는 함수를 호출
         binding.gpsButton.setOnClickListener {
             if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
-                startLocationUpdates()
+                mFusedLocationProviderClient!!.lastLocation.addOnSuccessListener { location: Location? ->
+                    Log.d("location0", "location" + location)
+                    if ((location == null) || ((location!!.longitude >= 0) && (location!!.latitude >= 0))) {
+                        if (location != null) {
+                            x = location.longitude.toString()
+                            y = location.latitude.toString()
+                            Log.d("location1", x +" "+y)
+                        }
+                    }
+                }
             }
             CoroutineScope(Dispatchers.Default).launch {
                 launch {
                     sleep(200L)
-                    search_keyword = homeViewModel.region_2depth_name.value.toString()
-                    Log.d("coroutinTest", search_keyword)
-                    homeViewModel.searchKeyword(search_keyword, "FD6")
+                    homeViewModel.searchcategory(x,y,"음식점 > ")
                 }
             }
         }

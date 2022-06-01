@@ -1,7 +1,10 @@
 package com.example.myapplication.ui.dashboard
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
@@ -45,6 +48,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
     //위치정보 요청의 매개변수를 저장하는 객체
     internal lateinit var mLocationRequest: LocationRequest
 
+
     private val listItems = arrayListOf<ListLayout>()   // 리사이클러 뷰 아이템
     private val listAdapter = ListAdapter(listItems)    // 리사이클러 뷰 어댑터
     private var pageNumber = 1      // 검색 페이지 번호
@@ -63,6 +67,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,8 +83,6 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         binding.rvList.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = listAdapter
-
-
 
 
         // 리스트 아이템 클릭 시 해당 위치로 이동
@@ -158,20 +161,14 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                     binding.mapView.addCircle(circle1)
                     binding.mapView.addPOIItem(point)
                     binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 5,true)
-
                     searchKeyword("음식점",1)
-
-
-
                 }catch(e: java.lang.NullPointerException){
                     Log.d("remove catch", "try catch Remove Marker")
                 }
             }
         }
-
         //위치 업데이트를 하는 함수
         fun startLocationUpdates() {
-
             mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
             if (ActivityCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -183,18 +180,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 Looper.myLooper()!!
             )
         }
-
         //위치정보를 가져오는 함수를 호출
         binding.btnStart.setOnClickListener {
             if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
                 startLocationUpdates()
             }
         }
-        
-        
-        
-        
-
         fun zoomOut() {//줌아웃
             binding.mapView.zoomOut(true)
         }
@@ -211,22 +202,10 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         binding.btnZoomOutButton.setOnClickListener{
             zoomOut()
         }
-
-
-
-
-
-
-
-
         //지도클릭시 키보드 사라지기
        binding.mapView.setMapViewEventListener(this)
-
-
         return root
     }
-
-
     // 키워드 검색 함수
     private fun searchKeyword(keyword: String, page: Int) {
         val radius:Int = 3000
@@ -260,17 +239,16 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             //binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
             for (document in searchResult!!.documents) {
 
-                val item = ListLayout(document.place_name,
+                val item = ListLayout(
+                    document.place_name,
                     document.road_address_name,
-
-
-
                     document.address_name,
                     document.x.toDouble(),
                     document.y.toDouble())
                 listItems.add(item)
 
                 // 지도에 마커 추가
+
                 val point = MapPOIItem()
                 point.apply {
                     itemName = document.place_name
@@ -285,18 +263,12 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
             binding.btnNextPage.isEnabled = !searchResult.meta.is_end // 페이지가 더 있을 경우 다음 버튼 활성화
             binding.btnPrevPage.isEnabled = pageNumber != 1             // 1페이지가 아닐 경우 이전 버튼 활성화
-
-
-
-
         } else {
             // 검색 결과 없음
             Toast.makeText(activity, "검색 결과가 없습니다", Toast.LENGTH_SHORT).show()
         }
         //
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

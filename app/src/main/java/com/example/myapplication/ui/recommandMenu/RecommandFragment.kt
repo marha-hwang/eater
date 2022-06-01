@@ -42,6 +42,7 @@ class RecommandFragment : Fragment() {
 
         binding.groupFoodType.setOnClickedButtonListener { _, position ->
             selectFoodOption = enumValues<Food>().first { it.index == position }
+
         }
 
         binding.groupPeopleType.setOnClickedButtonListener { _, position ->

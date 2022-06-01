@@ -86,35 +86,51 @@ class Restaurant_InfoFragment : Fragment() {
                                     .addOnSuccessListener {
                                         //식당문서 변경
                                         it.update("likes", FieldValue.increment(1))
-                                        it.update("LikeUsers", FieldValue.arrayUnion(user?.id.toString()))
+                                        it.update(
+                                            "LikeUsers",
+                                            FieldValue.arrayUnion(user?.id.toString())
+                                        )
                                     }
                                     .addOnFailureListener {
 
                                     }
                             } else {
-                                itemsCollectionRef.whereEqualTo("res_address", args.restaurantAddress).get()
+                                itemsCollectionRef.whereEqualTo(
+                                    "res_address",
+                                    args.restaurantAddress
+                                ).get()
                                     .addOnSuccessListener {
                                         if (it.isEmpty) {
                                             itemsCollectionRef.add(itemMap) //새로운 document생성후 필드 추가
                                                 .addOnSuccessListener {
                                                     //식당문서 변경
                                                     it.update("likes", FieldValue.increment(1))
-                                                    it.update("LikeUsers", FieldValue.arrayUnion(user?.id.toString()))
+                                                    it.update(
+                                                        "LikeUsers",
+                                                        FieldValue.arrayUnion(user?.id.toString())
+                                                    )
                                                 }
                                                 .addOnFailureListener {
                                                 }
                                         } else {
                                             //존재하는 문서변경 좋아요 수 추가랑 유저 리스트 추가
-                                            var userList: ArrayList<String> = it.documents.get(0).get("LikeUsers") as ArrayList<String>
+                                            var userList: ArrayList<String> = it.documents.get(0)
+                                                .get("LikeUsers") as ArrayList<String>
                                             if (!userList.contains(user?.id.toString())) {
-                                            Log.d("", it.documents.get(0).id)
-                                            itemsCollectionRef.document(it.documents.get(0).id)
-                                                .update("likes", FieldValue.increment(1))
-                                            itemsCollectionRef.document(it.documents.get(0).id)
-                                                .update("LikeUsers", FieldValue.arrayUnion(user?.id.toString())
-                                                )
-                                            }else {
-                                                Toast.makeText(requireContext(), "이미 좋아요를 눌렀습니다", Toast.LENGTH_SHORT).show()
+                                                Log.d("", it.documents.get(0).id)
+                                                itemsCollectionRef.document(it.documents.get(0).id)
+                                                    .update("likes", FieldValue.increment(1))
+                                                itemsCollectionRef.document(it.documents.get(0).id)
+                                                    .update(
+                                                        "LikeUsers",
+                                                        FieldValue.arrayUnion(user?.id.toString())
+                                                    )
+                                            } else {
+                                                Toast.makeText(
+                                                    requireContext(),
+                                                    "이미 좋아요를 눌렀습니다",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
                                             }
                                         }
                                     }
@@ -125,9 +141,7 @@ class Restaurant_InfoFragment : Fragment() {
                         }
                 }
             }
-
         }
-
         binding.button6.setOnClickListener {
             UserApiClient.instance.me { user, error ->
                 if (error != null) {

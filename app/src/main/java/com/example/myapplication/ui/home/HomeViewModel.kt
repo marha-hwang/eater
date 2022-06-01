@@ -90,7 +90,7 @@ class HomeViewModel : ViewModel() {
 
                     if (response.body() != null) {
                         for (i: Int in 0 until response.body()!!.documents.size) {
-                            if(response.body()?.documents!!.get(i)!!.category_name.contains(category)) {
+                            if (response.body()?.documents!!.get(i)!!.category_name.equals("음식점")) {
                                 places.add(
                                     Place(
                                         response.body()?.documents!!.get(i)!!.place_name,
@@ -102,6 +102,26 @@ class HomeViewModel : ViewModel() {
                                         response.body()?.documents!!.get(i)!!.y
                                     )
                                 )
+                            } else {
+                                var categoryall =
+                                    response.body()?.documents!!.get(i)!!.category_name.split(">")
+                                var categoryname = categoryall[0] + ">" + categoryall[1]
+                                Log.e("뜨워쓰기", "확인 :${categoryall[1]}")
+                                Log.e("카테고리 네임 : ", categoryname)
+
+                                if (category.contains(categoryname) || category.equals("음식점 > ")) {
+                                    places.add(
+                                        Place(
+                                            response.body()?.documents!!.get(i)!!.place_name,
+                                            response.body()?.documents!!.get(i)!!.address_name,
+                                            response.body()?.documents!!.get(i)!!.road_address_name,
+                                            response.body()?.documents!!.get(i)!!.place_url,
+                                            response.body()?.documents!!.get(i)!!.category_name,
+                                            response.body()?.documents!!.get(i)!!.x,
+                                            response.body()?.documents!!.get(i)!!.y
+                                        )
+                                    )
+                                }
                             }
                         }
                     } else {
