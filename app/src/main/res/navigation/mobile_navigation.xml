@@ -31,6 +31,9 @@
         android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_restaurant_InfoFragment"
+            app:destination="@id/restaurant_InfoFragment" />
     </fragment>
 
     <fragment

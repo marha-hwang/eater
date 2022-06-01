@@ -28,7 +28,10 @@
         <entry key="..\:/eater123/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="..\:/eater123/app/src/main/res/layout/fragment_mypage.xml" value="0.3482789855072464" />
         <entry key="..\:/eater123/app/src/main/res/layout/fragment_notifications.xml" value="0.3482789855072464" />
+        <entry key="..\:/eater123/app/src/main/res/layout/fragment_recommand.xml" value="0.18489583333333334" />
+        <entry key="..\:/eater123/app/src/main/res/layout/fragment_review.xml" value="0.18489583333333334" />
         <entry key="..\:/eater123/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
+        <entry key="..\:/eater123/app/src/main/res/layout/list_layout.xml" value="0.18489583333333334" />
         <entry key="..\:/eatertest/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
         <entry key="..\:/eatertest/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/eatertest/app/src/main/res/layout/fragment_home.xml" value="0.3619791666666667" />
@@ -39,6 +42,7 @@
         <entry key="..\:/eatertest/app/src/main/res/layout/list_layout.xml" value="0.3619791666666667" />
         <entry key="..\:/eatertest/app/src/main/res/layout/restaurant__info_fragment.xml" value="0.3619791666666667" />
         <entry key="..\:/eatertest/app/src/main/res/layout/search_fragment.xml" value="0.3619791666666667" />
+        <entry key="..\:/final/app/src/main/res/layout/restaurant__info_fragment.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/activity_login.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="..\:/mkdir/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
