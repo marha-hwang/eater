@@ -2,6 +2,7 @@ package com.example.myapplication.ui.dashboard
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
@@ -15,9 +16,15 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.LoginActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentDashboardBinding
+import com.example.myapplication.ui.home.HomeFragmentDirections
+import com.example.myapplication.ui.mypage.MypageFragmentDirections
+import com.example.myapplication.ui.notifications.NotificationsFragmentDirections
+import com.example.myapplication.ui.restaurant_info.Restaurant_InfoFragment
 import com.google.android.gms.location.*
 import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
@@ -29,9 +36,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import kotlin.collections.HashMap
 
 
-class DashboardFragment : Fragment(), MapView.MapViewEventListener {
+class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POIItemEventListener {
     companion object {
         const val BASE_URL = "https://dapi.kakao.com/"
         const val API_KEY = "KakaoAK ad9588c849020194182ad63bfb3285b3"  // REST API 키
@@ -60,6 +68,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
     private var x : String = "126.978652258823"
     private var y : String = "37.56682420267543"
+    private val markerInfo:HashMap<String, String> = HashMap()
 
 
 
@@ -164,11 +173,15 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
 
 
+
                 }catch(e: java.lang.NullPointerException){
                     Log.d("remove catch", "try catch Remove Marker")
                 }
             }
         }
+
+
+
 
         //위치 업데이트를 하는 함수
         fun startLocationUpdates() {
@@ -180,9 +193,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 Log.d(ContentValues.TAG, "startLocationUpdates() 두 위치 권한중 하나라도 없는 경우 ")
             }
-            mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallBack,
-                Looper.myLooper()!!
-            )
+            mFusedLocationProviderClient!!.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper()!!)
         }
 
         //위치정보를 가져오는 함수를 호출
@@ -191,10 +202,9 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                 startLocationUpdates()
             }
         }
-        
-        
-        
-        
+
+
+
 
         fun zoomOut() {//줌아웃
             binding.mapView.zoomOut(true)
@@ -205,23 +215,17 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
         }
 
         //지도 맵을 확대하기
-       binding.btnZoomButton.setOnClickListener{
+        binding.btnZoomButton.setOnClickListener{
             zoomIn()
         }
         //지도 맵 축소하기
         binding.btnZoomOutButton.setOnClickListener{
             zoomOut()
         }
-
-
-
-
-
-
-
-
         //지도클릭시 키보드 사라지기
-       binding.mapView.setMapViewEventListener(this)
+        binding.mapView.setMapViewEventListener(this)
+        //마커 말풍선 클릭시 식당상세로 이동
+        binding.mapView.setPOIItemEventListener(this)
 
 
         return root
@@ -237,7 +241,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(KakaoAPI::class.java)            // 통신 인터페이스를 객체로 생성
-        val call = api.getSearchKeyword(API_KEY, keyword, page, x, y, radius)    // 검색 조건 입력
+        val call = api.getSearchKeyword(API_KEY,keyword,"FD6", page, x, y, radius)    // 검색 조건 입력
 
         // API 서버에 요청
         call.enqueue(object: Callback<ResultSearchKeyword> {
@@ -259,15 +263,11 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
             // 검색 결과 있음
             listItems.clear()                   // 리스트 초기화
             binding.mapView.removeAllPOIItems() // 지도의 마커 모두 제거
-            
+
             //여기에 현재 위치 추가하는걸로
             for (document in searchResult!!.documents) {
-
                 val item = ListLayout(document.place_name,
                     document.road_address_name,
-
-
-
                     document.address_name,
                     document.x.toDouble(),
                     document.y.toDouble())
@@ -283,10 +283,8 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
                     selectedMarkerType = MapPOIItem.MarkerType.RedPin
                 }
                 binding.mapView.addPOIItem(point)
-                
-
                 //여기에 내 위치 추가
-
+                markerInfo.put(point.itemName, document.address_name +"," + document.place_url)
 
                 val mypoint = MapPOIItem()
                 mypoint.apply {
@@ -323,7 +321,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
     }
 
 
-//지도 이벤트 처리 함수 override구현
+    //지도 이벤트 처리 함수 override구현
     override fun onMapViewInitialized(p0: MapView?) {
 
     }
@@ -358,5 +356,34 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener {
 
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
 
+    }
+
+    override fun onPOIItemSelected(p0: MapView?, p1: MapPOIItem?) {
+    }
+
+    override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
+        if(!p1!!.itemName.equals("현재 위치")) {
+            val name = p1!!.itemName
+            val address = markerInfo.get(name).toString().split(",")[0]
+            val url = markerInfo.get(name).toString().split(",")[1]
+            Log.d("", name + "     " + address + "     " + url)
+            val nav = p0?.let { Navigation.findNavController(it) }
+            val action =
+                DashboardFragmentDirections.actionNavigationDashboardToRestaurantInfoFragment(
+                    p1!!.itemName, address, url
+                )
+            nav?.navigate(action)
+
+        }
+    }
+
+    override fun onCalloutBalloonOfPOIItemTouched(
+        p0: MapView?,
+        p1: MapPOIItem?,
+        p2: MapPOIItem.CalloutBalloonButtonType?
+    ) {
+    }
+
+    override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {
     }
 }
