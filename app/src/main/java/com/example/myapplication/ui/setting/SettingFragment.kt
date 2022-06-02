@@ -58,16 +58,9 @@ class SettingFragment : Fragment() {
             }
         }
 
-        /*binding.Unlinkbtn.setOnClickListener{
-            UserApiClient.instance.unlink { error ->
-                if (error != null) {
-                    Log.e(TAG, "연결 끊기 실패", error)
-                }
-                else {
-                    Log.i(TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
-                }
-            }
-        }*/
+        binding.noticeBtn.setOnClickListener {
+            Toast.makeText(requireContext(), "아직 공지사항이 없습니다",Toast.LENGTH_SHORT).show()
+        }
 
         return root
     }

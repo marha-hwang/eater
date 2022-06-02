@@ -82,33 +82,33 @@ class MypageFragment : Fragment() {
         }
 
         binding.mylikeBtn.setOnClickListener {
-            if(binding.mylikeBtn.text.toString().equals("열기")) {
+            if(binding.mylikeBtn.text.toString().equals("나의 좋아요")) {
                 binding.likeView.isVisible = true
                 binding.mylikeBtn.text = "닫기"
             }
             else {
-                binding.mylikeBtn.text = "열기"
+                binding.mylikeBtn.text = "나의 좋아요"
                 binding.likeView.isVisible = false
             }
         }
 
         binding.reviewBtn.setOnClickListener {
-            if(binding.reviewBtn.text.toString().equals("열기")) {
+            if(binding.reviewBtn.text.toString().equals("내가 쓴 리뷰")) {
                 binding.reviewView.isVisible = true
                 binding.reviewBtn.text = "닫기"
             }
             else {
-                binding.reviewBtn.text = "열기"
+                binding.reviewBtn.text = "내가 쓴 리뷰"
                 binding.reviewView.isVisible = false
             }
         }
         binding.CommentBtn.setOnClickListener {
-            if(binding.CommentBtn.text.toString().equals("열기")) {
+            if(binding.CommentBtn.text.toString().equals("내가 쓴 댓글")) {
                 binding.commentView.isVisible = true
                 binding.CommentBtn.text = "닫기"
             }
             else {
-                binding.CommentBtn.text = "열기"
+                binding.CommentBtn.text = "내가 쓴 댓글"
                 binding.commentView.isVisible = false
             }
         }

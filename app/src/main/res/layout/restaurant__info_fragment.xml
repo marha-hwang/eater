@@ -7,17 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
@@ -172,15 +161,14 @@
 
                 <ImageView
                     android:id="@+id/resImg"
-                    android:layout_width="406dp"
-                    android:layout_height="193dp"
+                    android:layout_width="407dp"
+                    android:layout_height="216dp"
                     android:background="#F6F2F2"
                     app:layout_constraintBottom_toBottomOf="@+id/reviewComment"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.102"
+                    app:layout_constraintVertical_bias="0.091"
                     app:srcCompat="@drawable/logo"
                     tools:srcCompat="@drawable/logo" />
 
@@ -197,6 +185,19 @@
                     app:layout_constraintHorizontal_bias="0.197"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintBottom_toTopOf="@+id/resImg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/logo" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

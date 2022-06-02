@@ -27,12 +27,12 @@
         android:layout_marginBottom="28dp"
         android:background="@drawable/solid_btn2"
         android:text="로그아웃"
-        app:layout_constraintBottom_toTopOf="@+id/Unlinkbtn"
+        app:layout_constraintBottom_toTopOf="@+id/noticeBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/Unlinkbtn"
+        android:id="@+id/noticeBtn"
         android:layout_width="245dp"
         android:layout_height="39dp"
         android:layout_marginBottom="108dp"

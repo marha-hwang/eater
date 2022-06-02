@@ -129,9 +129,9 @@ class Restaurant_InfoFragment : Fragment() {
         binding.restaurantName.text = args.restaurantName
 
         //툴바 커스텀
-        val navController = findNavController()
-        binding.toolbar.setupWithNavController(navController)
-        binding.toolbar.title = "식당정보 하트하또"
+//        val navController = findNavController()
+//        binding.toolbar.setupWithNavController(navController)
+//        binding.toolbar.title = "식당정보 하트하또"
 
         val db: FirebaseFirestore = Firebase.firestore
         val itemsCollectionRef = db.collection("Restaurants")
