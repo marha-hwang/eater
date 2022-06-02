@@ -32,7 +32,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="274dp"
-                android:background="@drawable/stroke">
+                android:background="@drawable/stroke2">
 
                 <TextView
                     android:id="@+id/content"
@@ -73,8 +73,6 @@
                     android:id="@+id/user"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/stroke"
                     android:paddingLeft="5sp"
                     android:paddingTop="5sp"
                     android:paddingEnd="5sp"
