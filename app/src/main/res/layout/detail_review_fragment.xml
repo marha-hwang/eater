@@ -26,73 +26,126 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/stroke"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/user"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="user"
-                android:textColor="#EF9999"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="date" />
-
-            <TextView
-                android:id="@+id/Title"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="title"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="내용"
-                android:textSize="14sp"
-                app:autoSizeTextType="uniform" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="36dp">
+                android:layout_height="274dp"
+                android:background="@drawable/stroke">
 
-                <Button
-                    android:id="@+id/reviewDelete"
-                    android:layout_width="71dp"
-                    android:layout_height="35dp"
-                    android:text="삭제"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/upBtn"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/upBtn"
-                    android:layout_width="70dp"
-                    android:layout_height="33dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="#EF9999"
-
-                    android:text="추천"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="내용"
+                    android:textSize="14sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.994"
+                    app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.591" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingEnd="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.212" />
+
+                <TextView
+                    android:id="@+id/user"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/stroke"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingEnd="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="user"
+                    android:textColor="#EF9999"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.023"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.615" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.995">
+
+                    <Button
+                        android:id="@+id/reviewDelete"
+                        android:layout_width="71dp"
+                        android:layout_height="35dp"
+                        android:text="삭제"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/upBtn"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/upBtn"
+                        android:layout_width="70dp"
+                        android:layout_height="33dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#EF9999"
+
+                        android:text="추천"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.994"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/Title"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingBottom="5sp"
+                    android:text="title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.391" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
