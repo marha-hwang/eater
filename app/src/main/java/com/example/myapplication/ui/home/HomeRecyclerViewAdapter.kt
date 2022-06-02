@@ -42,10 +42,13 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
         RecyclerView.ViewHolder(binding.root) {
         //val checkbox: CheckBox = itemView!!.findViewById<CheckBox>(R.id.koreanfood)
 
+
         fun bind(place_name: String, address_name: String, place_url: String, category_name: String) {
             binding.textView.text = place_name
             //binding.textView2.text = address_name
-            binding.textView3.text = category_name
+            val number = (Math.random()+4).toString().split("")
+            val randomnumber = number[1] + number[2] + number[3]
+            binding.textView3.text = "★ " + randomnumber
             binding.CardView.setOnClickListener{
                 val nav = findNavController(it)
                 val action = HomeFragmentDirections.actionNavigationHomeToRestaurantInfoFragment4(
