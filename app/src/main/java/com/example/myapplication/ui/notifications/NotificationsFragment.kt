@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentNotificationsBinding
@@ -22,6 +23,7 @@ import com.google.firebase.storage.ktx.storage
 class NotificationsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
+    private var bestReviewID = ""
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -56,6 +58,16 @@ class NotificationsFragment : Fragment() {
         imagesRef*/
 
 
+        binding.constraintLayout2.setOnClickListener {
+            val nav = Navigation.findNavController(it)
+            val action =
+                NotificationsFragmentDirections.actionNavigationNotificationsToDetailReviewFragment(
+                    bestReviewID
+                )
+            nav?.navigate(action)
+            Log.d("id", "id= " + bestReviewID)
+        }
+
         return root
     }
 
@@ -69,8 +81,9 @@ class NotificationsFragment : Fragment() {
         val itemsCollectionRef = db.collection("Reviews").orderBy("likes", Query.Direction.DESCENDING)
 
         itemsCollectionRef.get().addOnSuccessListener {
-            binding.bestTitle.text =  it.documents.get(0).get("title").toString()
-            binding.bestContent.text =  it.documents.get(0).get("content").toString()
+            bestReviewID = it.documents.get(0).id
+            binding.bestTitle.text =  it.documents.get(0).get("restaurant_name").toString()
+            binding.bestContent.text =  it.documents.get(0).get("title").toString()
             binding.bestLikes.text =  it.documents.get(0).get("likes").toString()
         }
     }
