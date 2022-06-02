@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.gson.annotations.Until
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -256,12 +257,32 @@ class Restaurant_InfoFragment : Fragment() {
                     "정보없음"
                 }
 
-                val menu = try {
-                    jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
-                        .getJSONObject(0).getString("menu")
+                val menucount = try {
+                    jsonObject.getJSONObject("menuInfo").getInt("menucount")
                 } catch (e: org.json.JSONException) {
                     "정보없음"
                 }
+                Log.d("", "메뉴카운트: "+menucount.toString())
+
+                val menuList: ArrayList<String> = ArrayList()
+                if(!menucount.equals("정보없음")) {
+                    for (i: Int in 0 until menucount.toString().toInt()) {
+                        menuList.add(
+                            jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
+                                .getJSONObject(i).getString("menu") +"   "+
+                                    jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
+                                        .getJSONObject(i).getString("price")+ "원\n"
+                        )
+                    }
+                }
+                //Log.d("", "메뉴와가격"+menuList.get(0).toString())
+                var menus =""
+                if(menuList.size != 0) {
+                    for (menu in menuList) {
+                        menus += menu
+                    }
+                }else menus = "정보없음"
+
                 res_x = try{
                     jsonObject.getJSONObject("basicInfo").getString("wpointx")
                 } catch (e: org.json.JSONException)   {
@@ -280,10 +301,38 @@ class Restaurant_InfoFragment : Fragment() {
                     "정보없음"
                 }
 
+                val opeingtimeSE = try {
+                    jsonObject.getJSONObject("basicInfo").getJSONObject("openHour")
+                        .getJSONArray("periodList").getJSONObject(0).getJSONArray("timeList").getJSONObject(0).getString("timeSE")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
+
+                val opendayOfWeek = try {
+                    jsonObject.getJSONObject("basicInfo").getJSONObject("openHour")
+                        .getJSONArray("periodList").getJSONObject(0).getJSONArray("timeList").getJSONObject(0).getString("dayOfWeek")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
+
+                val parking = try {
+                    jsonObject.getJSONObject("basicInfo").getJSONObject("facilityInfo")
+                        .getString("parking")
+                } catch (e: org.json.JSONException) {
+                    "정보없음"
+                }
+
+                var parkingToString = parking.toString()
+                if(parking.equals("Y")){
+                    parkingToString = "주차가능"
+                }else parkingToString = "주차불가능"
+
                 activity?.runOnUiThread {
                     binding.phoneNum.text = phonenum
-                    binding.menuBtn.text = menu
+                    binding.menuBtn.text = menus
                     binding.reviewComment.text = comment
+                    binding.textParking.text = parkingToString
+                    binding.textOpentime.text = opeingtimeSE.toString() +"  "+ opendayOfWeek.toString()
 
                     //식당이미지를 코루틴으로 불러오기
                     CoroutineScope(Dispatchers.Default).launch {
