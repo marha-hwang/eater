@@ -203,16 +203,7 @@ class HomeFragment : Fragment(),setURL_interface {
         //위치정보를 가져오는 함수를 호출
         binding.gpsButton.setOnClickListener {
             if ((activity as MainActivity).checkPermissionForLocation(requireContext())) { //권한 요청
-                mFusedLocationProviderClient!!.lastLocation.addOnSuccessListener { location: Location? ->
-                    Log.d("location0", "location" + location)
-                    if ((location == null) || ((location!!.longitude >= 0) && (location!!.latitude >= 0))) {
-                        if (location != null) {
-                            x = location.longitude.toString()
-                            y = location.latitude.toString()
-                            Log.d("location1", x +" "+y)
-                        }
-                    }
-                }
+                startLocationUpdates()
             }
             CoroutineScope(Dispatchers.Default).launch {
                 launch {

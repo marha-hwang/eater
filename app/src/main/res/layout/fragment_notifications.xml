@@ -30,13 +30,14 @@
 
         <TextView
             android:id="@+id/best_title"
-            android:layout_width="219dp"
+            android:layout_width="350dp"
             android:layout_height="43dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
             android:text="TextView"
             android:textColor="@color/white"
             android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +48,7 @@
             android:layout_marginLeft="10dp"
             android:text="TextView"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/best_title"
@@ -57,15 +58,13 @@
             android:id="@+id/imageView2"
             android:layout_width="41dp"
             android:layout_height="39dp"
-            android:src="@android:drawable/star_big_on"
+            android:src="@drawable/like_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/best_likes"
             app:layout_constraintHorizontal_bias="0.896"
             app:layout_constraintStart_toEndOf="@+id/best_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01"
-            app:srcCompat="@drawable/like"
-            tools:srcCompat="@drawable/like" />
+            app:layout_constraintVertical_bias="0.01" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -75,13 +74,11 @@
             app:layout_constraintBottom_toTopOf="@+id/best_title"
             app:layout_constraintEnd_toStartOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/like"
-            tools:srcCompat="@drawable/like" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/best_likes"
-            android:layout_width="39dp"
+            android:layout_width="45dp"
             android:layout_height="26dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
@@ -100,9 +97,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Best Comment!"
-            android:textSize="18sp"
+            android:text="Best Likes!"
             android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toTopOf="@+id/best_title"
             app:layout_constraintEnd_toEndOf="parent"

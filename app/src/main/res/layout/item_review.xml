@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         app:cardCornerRadius="20dp"
         android:layout_height="wrap_content"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,8 +28,9 @@
 
             <TextView
                 android:id="@+id/NotificationTitle"
-                android:layout_width="120dp"
+                android:layout_width="220dp"
                 android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
                 android:text="TextView"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -65,19 +67,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/NotificationTitle"
                 app:layout_constraintVertical_bias="0.741" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="118dp"
-                android:layout_height="111dp"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintCircleRadius="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.912"
-                app:layout_constraintStart_toEndOf="@+id/NotificationDate"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
             <TextView
                 android:id="@+id/Resname"
                 android:layout_width="142dp"
@@ -91,6 +80,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView_img"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardBackgroundColor="#FFE4E4"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.488">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    app:layout_constraintCircleRadius="15dp"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
