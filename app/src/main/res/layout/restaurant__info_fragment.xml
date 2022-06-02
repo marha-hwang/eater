@@ -7,6 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
@@ -24,124 +35,108 @@
 
                 <TextView
                     android:id="@+id/menuBtn"
-                    android:layout_width="370dp"
+                    android:layout_width="350dp"
                     android:layout_height="100dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.707"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.678" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/restaurant_address"
                     android:layout_width="265dp"
                     android:layout_height="36dp"
-                    android:background="#FFE4E4"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#F8ECEC"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.198"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.431" />
+                    app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
 
                 <TextView
                     android:id="@+id/restaurantName"
                     android:layout_width="265dp"
                     android:layout_height="36dp"
-                    android:background="#FFE4E4"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#F8ECEC"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.198"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.363" />
+                    app:layout_constraintTop_toBottomOf="@+id/resImg" />
 
                 <Button
                     android:id="@+id/likeBtn"
                     android:layout_width="78dp"
                     android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="#EF9999"
                     android:text="좋아요"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.951"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.363" />
+                    app:layout_constraintStart_toEndOf="@+id/restaurantName"
+                    app:layout_constraintTop_toBottomOf="@+id/resImg" />
 
                 <Button
                     android:id="@+id/reviewBtn"
                     android:layout_width="78dp"
                     android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="#EF9999"
                     android:text="리뷰 쓰기"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/reviewComment"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.951"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.431" />
+                    app:layout_constraintStart_toEndOf="@+id/restaurant_address"
+                    app:layout_constraintTop_toBottomOf="@+id/likeBtn" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="110dp"
                     android:layout_height="31dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
                     android:text="I 메뉴"
                     android:textColor="#EF9999"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.096"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.567" />
-
-                <Button
-                    android:id="@+id/MoreReviews"
-                    android:layout_width="65dp"
-                    android:layout_height="30dp"
-                    android:background="#EF9999"
-                    android:text="More"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.286"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.766" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
                 <TextView
                     android:id="@+id/reviewText"
                     android:layout_width="56dp"
                     android:layout_height="25dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="50dp"
                     android:text="I 리뷰"
                     android:textColor="#EF9999"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/reviewComment"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.081"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.761" />
+                    app:layout_constraintTop_toBottomOf="@+id/menuBtn" />
+
+                <Button
+                    android:id="@+id/MoreReviews"
+                    android:layout_width="65dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="50dp"
+                    android:background="#EF9999"
+                    android:text="More"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/reviewText"
+                    app:layout_constraintTop_toBottomOf="@+id/menuBtn" />
 
                 <TextView
                     android:id="@+id/reviewComment"
-                    android:layout_width="370dp"
+                    android:layout_width="350dp"
                     android:layout_height="193dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="TextView"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/MoreReviews" />
 
@@ -149,26 +144,25 @@
                     android:id="@+id/visitBtn"
                     android:layout_width="78dp"
                     android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="#EF9999"
                     android:text="방문도장"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.951"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.499" />
+                    app:layout_constraintStart_toEndOf="@+id/phoneNum"
+                    app:layout_constraintTop_toBottomOf="@+id/reviewBtn" />
 
                 <ImageView
                     android:id="@+id/resImg"
-                    android:layout_width="407dp"
-                    android:layout_height="216dp"
+                    android:layout_width="406dp"
+                    android:layout_height="193dp"
                     android:background="#F6F2F2"
                     app:layout_constraintBottom_toBottomOf="@+id/reviewComment"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.091"
+                    app:layout_constraintVertical_bias="0.102"
                     app:srcCompat="@drawable/logo"
                     tools:srcCompat="@drawable/logo" />
 
@@ -176,28 +170,61 @@
                     android:id="@+id/phoneNum"
                     android:layout_width="264dp"
                     android:layout_height="37dp"
-                    android:background="#FFE4E4"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#F8ECEC"
                     android:text="TextView"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.197"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/restaurant_address" />
 
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="51dp"
-                    android:layout_height="51dp"
-                    android:layout_marginTop="2dp"
-                    app:layout_constraintBottom_toTopOf="@+id/resImg"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
+                <TextView
+                    android:id="@+id/textOpentime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="25dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneNum" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="I 영업시간"
+                    android:textColor="#EF9999"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/logo" />
+                    app:layout_constraintTop_toBottomOf="@+id/phoneNum" />
+
+                <TextView
+                    android:id="@+id/textParking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="18dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintTop_toBottomOf="@+id/textOpentime" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="I 주차여부"
+                    android:textColor="#EF9999"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
