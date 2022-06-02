@@ -73,7 +73,7 @@ class MylikesAdapter(val context: Context) :RecyclerView.Adapter<MylikesAdapter.
                                 Firebase.storage.reference.child(url).child("res.jpg")
                             storageReference.downloadUrl.addOnSuccessListener {
                                 CoroutineScope(Dispatchers.Main).launch {
-                                    Glide.with(context).load(it).into(binding.imageView)
+                                    Glide.with(context).load(it).into(binding.resImg)
                                     Log.d("이미지", "이미지서버에서")
                                 }
                             }

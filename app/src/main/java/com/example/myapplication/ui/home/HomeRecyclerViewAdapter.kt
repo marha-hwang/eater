@@ -108,7 +108,7 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
                                     Firebase.storage.reference.child(url).child("res.jpg")
                                 storageReference.downloadUrl.addOnSuccessListener {
                                     CoroutineScope(Dispatchers.Main).launch {
-                                        Glide.with(context).load(it).into(binding.imageView)
+                                        Glide.with(context).load(it).into(binding.resImg)
                                         Log.d("이미지", "이미지서버에서")
                                     }
                                 }.addOnFailureListener {
@@ -118,7 +118,7 @@ class HomeRecyclerViewAdapter(var setURL_interface: setURL_interface, private va
                                         }
                                         Log.d("이미지", "이미지카카오에서")
                                         CoroutineScope(Dispatchers.Main).launch {
-                                            binding.imageView.setImageBitmap(bitmap)
+                                            binding.resImg.setImageBitmap(bitmap)
                                         }
                                         val baos = ByteArrayOutputStream()
                                         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
