@@ -131,6 +131,7 @@ class Restaurant_InfoFragment : Fragment() {
         //툴바 커스텀
         val navController = findNavController()
         binding.toolbar.setupWithNavController(navController)
+        binding.toolbar.title = "식당정보 하트하또"
 
         val db: FirebaseFirestore = Firebase.firestore
         val itemsCollectionRef = db.collection("Restaurants")
@@ -161,7 +162,7 @@ class Restaurant_InfoFragment : Fragment() {
                                         //식당문서 변경
                                         it.update("likes", FieldValue.increment(1))
                                         it.update("LikeUsers", FieldValue.arrayUnion(user?.id.toString()))
-                                        Toast.makeText(requireContext(), "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(requireContext(), "좋아요를 눌렀습니다!", Toast.LENGTH_SHORT).show()
                                     }
                                     .addOnFailureListener {
 
@@ -175,7 +176,7 @@ class Restaurant_InfoFragment : Fragment() {
                                                     //식당문서 변경
                                                     it.update("likes", FieldValue.increment(1))
                                                     it.update("LikeUsers", FieldValue.arrayUnion(user?.id.toString()))
-                                                    Toast.makeText(requireContext(), "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                                                    Toast.makeText(requireContext(), "좋아요를 눌렀습니다!", Toast.LENGTH_SHORT).show()
                                                 }
                                                 .addOnFailureListener {
                                                 }
@@ -189,9 +190,9 @@ class Restaurant_InfoFragment : Fragment() {
                                             itemsCollectionRef.document(it.documents.get(0).id)
                                                 .update("LikeUsers", FieldValue.arrayUnion(user?.id.toString())
                                                 )
-                                                Toast.makeText(requireContext(), "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(requireContext(), "좋아요를 눌렀습니다!", Toast.LENGTH_SHORT).show()
                                             }else {
-                                                Toast.makeText(requireContext(), "이미 좋아요를 눌렀습니다", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(requireContext(), "이미 좋아요를 눌렀습니다! ", Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                     }
@@ -205,7 +206,7 @@ class Restaurant_InfoFragment : Fragment() {
 
         }
 
-        binding.button6.setOnClickListener {
+        binding.reviewBtn.setOnClickListener {
             UserApiClient.instance.me { user, error ->
                 if (error != null) {
                     Log.e(error.toString(), "사용자 정보 요청 실패")
@@ -280,9 +281,9 @@ class Restaurant_InfoFragment : Fragment() {
                 }
 
                 activity?.runOnUiThread {
-                    binding.textView4.text = phonenum
-                    binding.textView5.text = menu
-                    binding.textView6.text = comment
+                    binding.phoneNum.text = phonenum
+                    binding.menuBtn.text = menu
+                    binding.reviewComment.text = comment
 
                     //식당이미지를 코루틴으로 불러오기
                     CoroutineScope(Dispatchers.Default).launch {
@@ -301,7 +302,7 @@ class Restaurant_InfoFragment : Fragment() {
                                 ImageLoader.loadImage(url)
                             }
                             CoroutineScope(Dispatchers.Main).launch {
-                                binding.imageView.setImageBitmap(bitmap)
+                                binding.resImg.setImageBitmap(bitmap)
                             }
                         }
                     }

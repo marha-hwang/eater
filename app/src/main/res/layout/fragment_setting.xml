@@ -4,54 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EF9999"
+    android:background="#F8EAEA"
     tools:context=".ui.setting.SettingFragment">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/settingtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to EATER"
-        android:textColor="#964b00"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/Loginbtn"
         android:layout_width="245dp"
         android:layout_height="39dp"
-        android:background="#f9e000"
-        android:text="Kakao로 로그인"
+        android:background="@drawable/solid_btn"
+        android:text="Kakao 로그인"
         app:layout_constraintBottom_toTopOf="@+id/Logoutbtn"
+        app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
-
-    <Button
-        android:id="@+id/Unlinkbtn"
-        android:layout_width="245dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="72dp"
-        android:background="#f9e000"
-        android:text="공지사항"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <Button
         android:id="@+id/Logoutbtn"
         android:layout_width="245dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="24dp"
-        android:background="#f9e000"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/solid_btn2"
         android:text="로그아웃"
         app:layout_constraintBottom_toTopOf="@+id/Unlinkbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Unlinkbtn"
+        android:layout_width="245dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/solid_btn2"
+        android:text="공지사항"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="232dp"
+        android:layout_height="211dp"
+        android:src="@drawable/logo_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EATER"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
