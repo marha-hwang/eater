@@ -158,6 +158,8 @@ class DetailReviewFragment : Fragment(), list_onClick_interface {
                                 itemsCollectionRef.document(it.documents.get(0).id)
                                     .update("LikeUsers", FieldValue.arrayUnion(user?.id.toString())
                                     )
+                                Toast.makeText(requireContext(), "추천 완료!", Toast.LENGTH_SHORT).show()
+
                             }else {
                                 Toast.makeText(requireContext(), "이미 좋아요를 눌렀습니다", Toast.LENGTH_SHORT).show()
                             }

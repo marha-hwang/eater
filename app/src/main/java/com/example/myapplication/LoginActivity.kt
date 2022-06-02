@@ -2,8 +2,11 @@ package com.example.myapplication
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.api.ReviewsData
@@ -25,7 +28,15 @@ class LoginActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+//        val nickname = findViewById<TextView>(R.id.nickname) // 로그인 버튼
+//
+//        UserApiClient.instance.me { user, error ->
+//            nickname.text = "닉네임 : ${user?.kakaoAccount?.profile?.nickname}"
+//        }
         super.onCreate(savedInstanceState)
+
+
+
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
