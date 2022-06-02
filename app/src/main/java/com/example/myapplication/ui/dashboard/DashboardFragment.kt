@@ -65,7 +65,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POII
     private val binding get() = _binding!!
 
 
-
+    private var existmLcation : Boolean = false
     private var x : String = "126.978652258823"
     private var y : String = "37.56682420267543"
     private val markerInfo:HashMap<String, String> = HashMap()
@@ -105,6 +105,7 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POII
             keyword = binding.etSearchField.text.toString()
             pageNumber = 1
             searchKeyword(keyword, pageNumber)
+            binding.mapView.setZoomLevel(7, true)
         }
         binding.btnZoomButton.setOnClickListener{
             binding.mapView.zoomIn(true)
@@ -169,10 +170,8 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POII
                     binding.mapView.addCircle(circle1)
                     binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(mLastLocation.latitude, mLastLocation.longitude), 5,true)
 
+                    existmLcation = true
                     searchKeyword("음식점",1)
-
-
-
 
                 }catch(e: java.lang.NullPointerException){
                     Log.d("remove catch", "try catch Remove Marker")
@@ -202,9 +201,6 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POII
                 startLocationUpdates()
             }
         }
-
-
-
 
         fun zoomOut() {//줌아웃
             binding.mapView.zoomOut(true)
@@ -286,15 +282,19 @@ class DashboardFragment : Fragment(), MapView.MapViewEventListener, MapView.POII
                 //여기에 내 위치 추가
                 markerInfo.put(point.itemName, document.address_name +"," + document.place_url)
 
-                val mypoint = MapPOIItem()
-                mypoint.apply {
-                    itemName = "현재 위치"
-                    mapPoint = MapPoint.mapPointWithGeoCoord(mLastLocation.latitude,
-                        mLastLocation.longitude)
-                    markerType = MapPOIItem.MarkerType.YellowPin
-                    selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                if(existmLcation == true) {
+                    val mypoint = MapPOIItem()
+                    mypoint.apply {
+                        itemName = "현재 위치"
+                        mapPoint = MapPoint.mapPointWithGeoCoord(
+                            mLastLocation.latitude,
+                            mLastLocation.longitude
+                        )
+                        markerType = MapPOIItem.MarkerType.YellowPin
+                        selectedMarkerType = MapPOIItem.MarkerType.RedPin
+                    }
+                    binding.mapView.addPOIItem(mypoint)
                 }
-                binding.mapView.addPOIItem(mypoint)
 
 
 
