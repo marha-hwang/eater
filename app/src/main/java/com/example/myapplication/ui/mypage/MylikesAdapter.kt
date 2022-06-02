@@ -27,7 +27,9 @@ class MylikesAdapter(val context: Context) :RecyclerView.Adapter<MylikesAdapter.
         RecyclerView.ViewHolder(binding.root) {
         fun bind(restaurantName: String, restaurantAddress: String, restaurantUrl: String) {
             binding.textView.text = restaurantName
-            binding.textView3.text = restaurantAddress
+            val number = (Math.random()+4).toString().split("")
+            val randomnumber = number[1] + number[2] + number[3]
+            binding.textView3.text = "★ " + randomnumber
 
             binding.CardView.setOnClickListener {
                 val nav = Navigation.findNavController(it)

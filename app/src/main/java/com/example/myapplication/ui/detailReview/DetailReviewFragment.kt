@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.api.ReviewsData
@@ -23,7 +24,11 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class DetailReviewFragment : Fragment(), list_onClick_interface {
@@ -42,6 +47,7 @@ class DetailReviewFragment : Fragment(), list_onClick_interface {
         val root: View = binding.root
 
         binding.reviewDelete.isVisible = false
+        binding.imageView8.isVisible = false
         (activity as MainActivity).bottomNavigationShow(false)//bottom네비게이션 없애기
 
         binding.replyButton.isVisible = false // 대댓글 달기 버튼 숨기기
@@ -61,6 +67,15 @@ class DetailReviewFragment : Fragment(), list_onClick_interface {
         DetailReviewViewModel.CommentList.observe(viewLifecycleOwner){
             adapter.notifyDataSetChanged()
             adapter.setData(it)
+        }
+        val storageReference = Firebase.storage.reference.child(reviewID).child("food.jpg")
+        CoroutineScope(Dispatchers.Default).launch {
+            storageReference.downloadUrl.addOnSuccessListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    binding.imageView8.isVisible = true
+                    Glide.with(requireContext()).load(it).into(binding.imageView8)
+                }
+            }
         }
 
         //댓글 남기기

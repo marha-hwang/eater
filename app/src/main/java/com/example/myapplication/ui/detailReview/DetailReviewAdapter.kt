@@ -8,6 +8,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.myapplication.R
 import com.example.myapplication.api.CommentData
 import com.example.myapplication.api.ReplyData
 import com.example.myapplication.databinding.ItemCommentBinding
@@ -15,7 +17,11 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DetailReviewAdapter(var lifecycleOwner: LifecycleOwner, var viewModel: DetailReviewViewModel, var listOnclickInterface: list_onClick_interface, private val context: Context) : RecyclerView.Adapter<DetailReviewAdapter.ViewHolder>(){
 

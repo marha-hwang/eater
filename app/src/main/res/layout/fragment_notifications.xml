@@ -19,9 +19,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="390dp"
-        android:layout_height="132dp"
-        android:background="#EF9999"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:background="#EFA4A4"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

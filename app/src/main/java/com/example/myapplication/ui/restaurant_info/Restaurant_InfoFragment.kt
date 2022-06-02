@@ -97,7 +97,7 @@ class Restaurant_InfoFragment : Fragment() {
                 Log.d("", "식당좌표" +res_x + ", " + res_y)
                 if(mLastLocation.longitude.toString().contains(res_y) && mLastLocation.latitude.toString().contains(res_x)) {
                     Toast.makeText(requireContext(), "방문완료~~~~~!!!!!!", Toast.LENGTH_SHORT).show()
-                }
+                }else  Toast.makeText(requireContext(), "식당이 아닙니다", Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -269,9 +269,11 @@ class Restaurant_InfoFragment : Fragment() {
                     for (i: Int in 0 until menucount.toString().toInt()) {
                         menuList.add(
                             jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
-                                .getJSONObject(i).getString("menu") +"   "+
+                                .getJSONObject(i).getString("menu") +"   "+try{
                                     jsonObject.getJSONObject("menuInfo").getJSONArray("menuList")
-                                        .getJSONObject(i).getString("price")+ "원\n"
+                                        .getJSONObject(i).getString("price")} catch (e: org.json.JSONException) {
+                                "정보없음"
+                            }+ "원\n"
                         )
                     }
                 }
